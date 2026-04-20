@@ -1,167 +1,136 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gästehaus 22 | Unterkunft in Asten</title>
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #e67e22;
-            --light: #f4f7f6;
-            --white: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <title>Gästehaus 22 – Zimmer für Arbeiter in Asten</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --accent: #222222;
+      --accent-soft: #666666;
+      --highlight: #e0b400;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            color: #333;
-            background-color: var(--light);
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        header {
-            background: var(--primary);
-            color: var(--white);
-            padding: 2rem 1rem;
-            text-align: center;
-        }
+    body {
+      font-family: var(--font-main);
+      background: var(--bg);
+      color: #111;
+      line-height: 1.6;
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 2rem;
-        }
+    header {
+      padding: 2.5rem 1.5rem 1.5rem;
+      text-align: center;
+      background: #ffffff;
+      border-bottom: 1px solid #e3e3e3;
+    }
 
-        .hero-info {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      font-size: 0.8rem;
+    }
 
-        @media (max-width: 768px) {
-            .hero-info { grid-template-columns: 1fr; }
-        }
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
 
-        h2 { color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+    h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
 
-        .price-tag {
-            background: var(--accent);
-            color: white;
-            padding: 1rem;
-            border-radius: 5px;
-            display: inline-block;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
+    .subtitle {
+      color: var(--accent-soft);
+      font-size: 0.95rem;
+    }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
+    main {
+      max-width: 1040px;
+      margin: 2rem auto 3rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 1.75rem;
+    }
 
-        .feature-card {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 5px solid var(--accent);
-        }
+    @media (max-width: 800px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
 
-        .contact-box {
-            background: var(--primary);
-            color: white;
-            padding: 2.5rem;
-            text-align: center;
-            border-radius: 8px;
-            margin-top: 3rem;
-        }
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.04);
+    }
 
-        .btn {
-            background: var(--accent);
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
+    .card + .card {
+      margin-top: 1rem;
+    }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            color: #777;
-        }
+    h2 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: var(--accent-soft);
+      margin-bottom: 1rem;
+    }
 
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-    </style>
-</head>
-<body>
+    p {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
 
-<header>
-    <h1>Gästehaus 22</h1>
-    <p>Ihre gemütliche Unterkunft für Arbeiter & Monteure in Asten</p>
-</header>
+    ul {
+      list-style: none;
+      margin-top: 0.25rem;
+    }
 
-<div class="container">
-    
-    <div class="hero-info">
-        <div>
-            <h2>Über uns</h2>
-            <p>Willkommen im <strong>Gästehaus 22</strong>. Wir bieten preiswerte, voll ausgestattete Zimmer für Arbeiter und Reisende in bester Lage von Asten (Oberösterreich).</p>
-            <p><strong>Adresse:</strong><br>Eichenstraße 22<br>4481 Asten, Österreich</p>
-        </div>
-        <div style="text-align: center; align-self: center;">
-            <div class="price-tag">
-                Nur 35€ / Nacht
-            </div>
-            <p><small>+ Ortstaxe</small></p>
-            <p>Sonderpreise für Langzeitmiete auf Anfrage!</p>
-        </div>
-    </div>
+    li {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
 
-    <h2>Ausstattung</h2>
-    <div class="features">
-        <div class="feature-card">
-            <h3>🛏️ Zimmer</h3>
-            <p>Helle Zimmer mit Einzelbetten, inkl. Bettwäsche und Handtüchern für einen erholsamen Schlaf.</p>
-        </div>
-        <div class="feature-card">
-            <h3>🍳 Küche</h3>
-            <p>Voll ausgestattete Wohnküche mit Herd, Mikrowelle, Kaffeemaschine und großem Kühlschrank.</p>
-        </div>
-        <div class="feature-card">
-            <h3>🔥 Komfort</h3>
-            <p>Gemütliches Wohnzimmer mit TV und traditionellem Kachelofen für eine heimelige Atmosphäre.</p>
-        </div>
-        <div class="feature-card">
-            <h3>🌳 Außenbereich</h3>
-            <p>Großer Garten mit Terrasse und Grillmöglichkeit – ideal für den Feierabend.</p>
-        </div>
-    </div>
+    li::before {
+      content: "•";
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1;
+      margin-top: 0.05rem;
+    }
 
-    <div class="contact-box">
-        <h2>Jetzt Zimmer anfragen</h2>
-        <p>Haben Sie Fragen oder möchten Sie direkt reservieren?</p>
-        <p>Telefon: <strong>+43 [Deine Nummer]</strong></p>
-        <p>E-Mail: <strong>[Deine E-Mail]</strong></p>
-        <a href="mailto:[Deine E-Mail]" class="btn">E-Mail senden</a>
-    </div>
-
-</div>
-
-<footer>
-    &copy; 2026 Gästehaus 22 - Asten | <a href="#">Impressum</a>
-</footer>
-
-</body>
-</html>
+    .price-tag {
+      display: inline-flex;
+      align
