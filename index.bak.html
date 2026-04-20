@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gästehaus 22 – Zimmer für Arbeiter in Asten</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* ... (Gleiche Styles wie zuvor) ... */
+    :root {
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --accent: #222222;
+      --accent-soft: #666666;
+      --highlight: #e0b400;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-main); background: var(--bg); color: #111; line-height: 1.6; }
+    header { padding: 2.5rem 1.5rem 1.5rem; text-align: center; background: #ffffff; border-bottom: 1px solid #e3e3e3; }
+    .logo-img { max-width: 140px; height: auto; margin-bottom: 1rem; }
+    h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 0.5rem; }
+    .subtitle { color: var(--accent-soft); font-size: 0.95rem; }
+    main { max-width: 1040px; margin: 2rem auto 3rem; padding: 0 1.5rem; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr); gap: 1.75rem; }
+    @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+    .card { background: var(--card); border-radius: 14px; padding: 1.75rem 1.5rem; box-shadow: 0 14px 30px rgba(0,0,0,0.04); height: fit-content; }
+    .gallery-section { grid-column: 1 / -1; margin-top: 1rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .gallery-item { border-radius: 10px; overflow: hidden; height: 250px; background: #eee; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .section-label { font-size: 0.8rem; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 0.4rem; }
+    .price-tag { font-size: 1.6rem; font-weight: 600; margin: 0.5rem 0; }
+    .btn-primary { padding: 0.7rem 1.4rem; background: var(--accent); color: #fff; border-radius: 999px; text-decoration: none; display: inline-block; }
+    footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--accent-soft); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="data:image/jpeg;base64,HIER_BASE64_VOM_LOGO" alt="Logo Gästehaus 22" class="logo-img">
+    <h1>Zimmer für Arbeiter in Asten</h1>
+    <p class="subtitle">Praktische, saubere Unterkunft für Monteure und Teams.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="section-label">Übernachtung</div>
+      <h2>Preis & Konditionen</h2>
+      <div class="price-tag">35 € <span>/ Nacht</span></div>
+      <p>Inklusive WLAN, Parkplatz und Endreinigung.</p>
+      <ul style="list-style: none; margin-top: 1rem;">
+        <li>✅ Saubere Einzel- & Doppelbetten</li>
+        <li>✅ Große Gemeinschaftsküche</li>
+        <li>✅ Parkplätze direkt vor dem Haus</li>
+      </ul>
+    </section>
+
+    <aside>
+      <section class="card">
+        <div class="section-label">Kontakt</div>
+        <h2>Jetzt Anfragen</h2>
+        <p>Eichenstraße 22, 4481 Asten</p>
+        <div style="margin-top: 1.5rem;">
+            <a href="tel:+43660..." class="btn-primary">📞 Jetzt anrufen</a>
+        </div>
+      </section>
+    </aside>
+
+    <section class="gallery-section card">
+      <div class="section-label">Einblicke</div>
+      <h2>Unsere Räumlichkeiten</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="data:image/jpeg;base64,HIER_BASE64_VON_SCHLAFRÄUME" alt="Zimmer">
+        </div>
+        <div class="gallery-item">
+          <img src="data:image/jpeg;base64,HIER_BASE64_VON_WOHNZIMMER" alt="Wohnzimmer">
+        </div>
+        <div class="gallery-item">
+          <img src="data:image/jpeg;base64,HIER_BASE64_VON_KÜCHE" alt="Küche">
+        </div>
+        <div class="gallery-item">
+          <img src="data:image/jpeg;base64,HIER_BASE64_VON_BAD" alt="Bad">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; Gästehaus 22 – 4481 Asten
+  </footer>
+
+</body>
+</html>

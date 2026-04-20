@@ -5,7 +5,6 @@
   <title>Gästehaus 22 – Zimmer für Arbeiter in Asten</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* ... (Gleiche Styles wie zuvor) ... */
     :root {
       --bg: #f5f5f5;
       --card: #ffffff;
@@ -14,80 +13,232 @@
       --highlight: #e0b400;
       --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-main); background: var(--bg); color: #111; line-height: 1.6; }
-    header { padding: 2.5rem 1.5rem 1.5rem; text-align: center; background: #ffffff; border-bottom: 1px solid #e3e3e3; }
-    .logo-img { max-width: 140px; height: auto; margin-bottom: 1rem; }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--bg);
+      color: #111;
+      line-height: 1.6;
+    }
+
+    /* Language Switcher */
+    .lang-switch {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang-btn {
+      padding: 0.4rem 0.8rem;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    header {
+      padding: 3rem 1.5rem 1.5rem;
+      text-align: center;
+      background: #ffffff;
+      border-bottom: 1px solid #e3e3e3;
+      position: relative;
+    }
+
+    .logo-img {
+      max-width: 140px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
     h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 0.5rem; }
     .subtitle { color: var(--accent-soft); font-size: 0.95rem; }
-    main { max-width: 1040px; margin: 2rem auto 3rem; padding: 0 1.5rem; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr); gap: 1.75rem; }
+
+    main {
+      max-width: 1040px;
+      margin: 2rem auto 3rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 1.75rem;
+    }
+
     @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
-    .card { background: var(--card); border-radius: 14px; padding: 1.75rem 1.5rem; box-shadow: 0 14px 30px rgba(0,0,0,0.04); height: fit-content; }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.04);
+    }
+
     .gallery-section { grid-column: 1 / -1; margin-top: 1rem; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-    .gallery-item { border-radius: 10px; overflow: hidden; height: 250px; background: #eee; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      height: 250px;
+      background: #eee;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .section-label { font-size: 0.8rem; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 0.4rem; }
     .price-tag { font-size: 1.6rem; font-weight: 600; margin: 0.5rem 0; }
-    .btn-primary { padding: 0.7rem 1.4rem; background: var(--accent); color: #fff; border-radius: 999px; text-decoration: none; display: inline-block; }
+    .price-tag span { font-size: 0.9rem; font-weight: 400; color: var(--accent-soft); }
+    
+    .btn-primary {
+      padding: 0.8rem 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+
     footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--accent-soft); }
+
+    /* Hide English by default */
+    [lang="en"] { display: none; }
+    body.lang-en [lang="de"] { display: none; }
+    body.lang-en [lang="en"] { display: inline; }
+    body.lang-en .gallery-section [lang="en"] { display: block; }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="data:image/jpeg;base64,HIER_BASE64_VOM_LOGO" alt="Logo Gästehaus 22" class="logo-img">
-    <h1>Zimmer für Arbeiter in Asten</h1>
-    <p class="subtitle">Praktische, saubere Unterkunft für Monteure und Teams.</p>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    
+    <img id="logo-placeholder" alt="Logo Gästehaus 22" class="logo-img">
+    
+    <h1 lang="de">Zimmer für Arbeiter in Asten</h1>
+    <h1 lang="en">Rooms for workers in Asten</h1>
+    
+    <p class="subtitle" lang="de">Praktische, saubere Unterkunft für Monteure und Teams.</p>
+    <p class="subtitle" lang="en">Practical, clean accommodation for fitters and teams.</p>
   </header>
 
   <main>
     <section class="card">
-      <div class="section-label">Übernachtung</div>
-      <h2>Preis & Konditionen</h2>
-      <div class="price-tag">35 € <span>/ Nacht</span></div>
-      <p>Inklusive WLAN, Parkplatz und Endreinigung.</p>
+      <div class="section-label" lang="de">Übernachtung</div>
+      <div class="section-label" lang="en">Accommodation</div>
+      
+      <h2 lang="de">Preis & Konditionen</h2>
+      <h2 lang="en">Prices & Conditions</h2>
+
+      <div class="price-tag">35 € <span lang="de">/ Nacht pro Person</span><span lang="en">/ night per person</span></div>
+      
+      <p lang="de">Inklusive WLAN, Parkplatz und Endreinigung.</p>
+      <p lang="en">Includes Wi-Fi, parking and final cleaning.</p>
+      
       <ul style="list-style: none; margin-top: 1rem;">
-        <li>✅ Saubere Einzel- & Doppelbetten</li>
-        <li>✅ Große Gemeinschaftsküche</li>
-        <li>✅ Parkplätze direkt vor dem Haus</li>
+        <li lang="de">✅ Saubere Einzel- & Doppelbetten</li>
+        <li lang="en">✅ Clean single & double beds</li>
+        <li lang="de">✅ Voll ausgestattete Gemeinschaftsküche</li>
+        <li lang="en">✅ Fully equipped shared kitchen</li>
+        <li lang="de">✅ Moderne Badezimmer</li>
+        <li lang="en">✅ Modern bathrooms</li>
       </ul>
     </section>
 
     <aside>
       <section class="card">
-        <div class="section-label">Kontakt</div>
-        <h2>Jetzt Anfragen</h2>
-        <p>Eichenstraße 22, 4481 Asten</p>
-        <div style="margin-top: 1.5rem;">
-            <a href="tel:+43660..." class="btn-primary">📞 Jetzt anrufen</a>
+        <div class="section-label" lang="de">Lage</div>
+        <div class="section-label" lang="en">Location</div>
+        <p><strong>Gästehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Austria</p>
+        <p style="margin-top:1rem;" lang="de">Nähe A1 Autobahn & Linz.</p>
+        <p style="margin-top:1rem;" lang="en">Close to A1 highway & Linz.</p>
+      </section>
+
+      <section class="card" style="margin-top: 1.5rem;">
+        <div class="section-label" lang="de">Kontakt</div>
+        <div class="section-label" lang="en">Contact</div>
+        <div style="margin-top: 1rem;">
+            <a href="tel:+43" class="btn-primary">
+                <span lang="de">📞 Jetzt anrufen</span>
+                <span lang="en">📞 Call now</span>
+            </a>
         </div>
       </section>
     </aside>
 
     <section class="gallery-section card">
-      <div class="section-label">Einblicke</div>
-      <h2>Unsere Räumlichkeiten</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="data:image/jpeg;base64,HIER_BASE64_VON_SCHLAFRÄUME" alt="Zimmer">
+      <div class="section-label" lang="de">Einblicke</div>
+      <div class="section-label" lang="en">Gallery</div>
+      <h2 lang="de">Unsere Räumlichkeiten</h2>
+      <h2 lang="en">Our Premises</h2>
+      
+      <div class="gallery-grid" id="gallery-container">
         </div>
-        <div class="gallery-item">
-          <img src="data:image/jpeg;base64,HIER_BASE64_VON_WOHNZIMMER" alt="Wohnzimmer">
-        </div>
-        <div class="gallery-item">
-          <img src="data:image/jpeg;base64,HIER_BASE64_VON_KÜCHE" alt="Küche">
-        </div>
-        <div class="gallery-item">
-          <img src="data:image/jpeg;base64,HIER_BASE64_VON_BAD" alt="Bad">
-        </div>
-      </div>
     </section>
   </main>
 
   <footer>
-    &copy; Gästehaus 22 – 4481 Asten
+    &copy; 2026 Gästehaus 22 – 4481 Asten
   </footer>
 
+  <script>
+    // FÜGE HIER DEINE BASE64 CODES EIN
+    const images = {
+      logo: "data:image/jpeg;base64,...", // Logo (1).jpg
+      img1: "data:image/jpeg;base64,...", // Schlafräume (1).jpg
+      img2: "data:image/jpeg;base64,...", // Wohnzimmer (1).jpg
+      img3: "data:image/jpeg;base64,...", // Küche (1).jpg
+      img4: "data:image/jpeg;base64,..."  // Bad (1).jpg
+    };
+
+    // Bilder einsetzen
+    document.getElementById('logo-placeholder').src = images.logo;
+    const gallery = document.getElementById('gallery-container');
+    [images.img1, images.img2, images.img3, images.img4].forEach(src => {
+      const div = document.createElement('div');
+      div.className = 'gallery-item';
+      div.innerHTML = `<img src="${src}" alt="Room">`;
+      gallery.appendChild(div);
+    });
+
+    // Sprachumschaltung
+    function setLang(lang) {
+      if (lang === 'en') {
+        document.body.classList.add('lang-en');
+        document.querySelectorAll('.lang-btn')[1].classList.add('active');
+        document.querySelectorAll('.lang-btn')[0].classList.remove('active');
+      } else {
+        document.body.classList.remove('lang-en');
+        document.querySelectorAll('.lang-btn')[0].classList.add('active');
+        document.querySelectorAll('.lang-btn')[1].classList.remove('active');
+      }
+    }
+  </script>
 </body>
 </html>
