@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gästehaus 22 – Asten</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --accent: #1a1a1a;
+      --accent-soft: #6c757d;
+      --highlight: #ffc107;
+      --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--bg);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Fixierter Sprachumschalter oben rechts */
+    .lang-switch {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      gap: 5px;
+      z-index: 1000;
+    }
+
+    .lang-btn {
+      padding: 6px 12px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    header {
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      background: #ffffff;
+      border-bottom: 1px solid #eee;
+      position: relative; /* Container für den absoluten Switcher */
+    }
+
+    .logo-img {
+      max-width: 160px;
+      height: auto;
+      margin: 0 auto 1.5rem;
+      display: block;
+    }
+
+    h1 { 
+      font-size: clamp(1.6rem, 5vw, 2.5rem); 
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .subtitle { 
+      color: var(--accent-soft); 
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 850px) {
+      main { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-label { 
+      font-size: 0.75rem; 
+      text-transform: uppercase; 
+      color: var(--accent-soft); 
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-tag { 
+      font-size: 2rem; 
+      font-weight: 800; 
+      color: var(--accent);
+      margin: 1rem 0;
+    }
+
+    .price-tag span { font-size: 1rem; font-weight: 400; color: var(--accent-soft); }
+
+    .feature-list { list-style: none; margin: 1.5rem 0; }
+    .feature-list li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover { background: #333; }
+
+    /* Galerie */
+    .gallery-section { grid-column: 1 / -1; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 1.5rem;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4/3;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #eee;
+    }
+
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+    footer { text-align: center; padding: 3rem; color: var(--accent-soft); font-size: 0.9rem; }
+
+    /* Sprachumschaltung Logik */
+    [lang="en"] { display: none; }
+    body.lang-en [lang="de"] { display: none; }
+    body.lang-en [lang="en"] { display: block; }
+    body.lang-en h1[lang="en"], body.lang-en span[lang="en"] { display: inline-block; }
+  </style>
+</head>
+<body class="lang-de">
+
+  <header>
+    <div class="lang-switch">
+      <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    
+    <img id="logo-main" src="" alt="Gästehaus 22 Logo" class="logo-img">
+    
+    <h1 lang="de">Zimmer für Arbeiter in Asten</h1>
+    <h1 lang="en">Rooms for Workers in Asten</h1>
+    
+    <p class="subtitle" lang="de">Komfortable und preiswerte Unterkunft für Monteure und Teams direkt bei Linz.</p>
+    <p class="subtitle" lang="en">Comfortable and affordable accommodation for workers and teams near Linz.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="section-label" lang="de">Konditionen</div>
+      <div class="section-label" lang="en">Conditions</div>
+      
+      <h2 lang="de">Preise & Ausstattung</h2>
+      <h2 lang="en">Prices & Features</h2>
+
+      <div class="price-tag">35 € <span lang="de">/ Nacht pro Person</span><span lang="en">/ night per person</span></div>
+      
+      <ul class="feature-list">
+        <li lang="de">✅ Inklusive WLAN & Parkplatz</li>
+        <li lang="en">✅ Including Wi-Fi & Parking</li>
+        <li lang="de">✅ Voll ausgestattete Gemeinschaftsküche</li>
+        <li lang="en">✅ Fully equipped shared kitchen</li>
+        <li lang="de">✅ Regelmäßige Reinigung & Endreinigung</li>
+        <li lang="en">✅ Regular & final cleaning included</li>
+        <li lang="de">✅ Waschmöglichkeiten vorhanden</li>
+        <li lang="en">✅ Laundry facilities available</li>
+      </ul>
+
+      <p lang="de">Ideal für Firmen und Langzeitmiete. Alle Nebenkosten sind im Preis enthalten.</p>
+      <p lang="en">Perfect for companies and long-term stays. All utilities included.</p>
+    </section>
+
+    <aside>
+      <section class="card">
+        <div class="section-label" lang="de">Kontakt</div>
+        <div class="section-label" lang="en">Contact</div>
+        <p><strong>Gästehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Österreich</p>
+        <br>
+        <a href="tel:+43" class="btn-primary">
+            <span lang="de">Jetzt anrufen</span>
+            <span lang="en">Call now</span>
+        </a>
+      </section>
+    </aside>
+
+    <section class="gallery-section card">
+      <div class="section-label" lang="de">Bildergalerie</div>
+      <div class="section-label" lang="en">Gallery</div>
+      <div class="gallery-grid" id="main-gallery">
+        </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Gästehaus 22 – Eichenstraße 22, 4481 Asten
+  </footer>
+
+  <script>
+    // DEINE BILDDATEN
+    const images = {
+      logo: "data:image/jpg;base64,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AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvh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sIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778AON8HANd5PEc3y5uAEpTpXWAHS3Z0gAVD2dIAZLfkwD4ftDAS4z0XJgIbb8nyYCEp8mAZKerADzfBwEKRZDt/jgFw+s+QATD6vE3zjoANhte5gEbhwFaYflACXel6zvAEOQ+rq8MBKcWK6PewCJh9FiHGv1ACON28mAVDOrfPEUATDa90/yAK3EW+vEAVYfCcUBU81ou9AOYlOve973HiALIVl0BbCtgHQ5ooB0w/Ju/je8ADUHbD/5AFtzhAB7hdoASmwBOj9YAdLOleT78AzzelRDfRgFRxSAOlH7QBZcPsAK22AWzhAAJPVgD3P0gFh08IwujAMy3+TADzdsQ2AlStW+AKkbQEph9FAN5VwBShnogCYPnASSdKMAjiusIAuD5wFTibPQATetIAVOM+TARovnAVvQ4DlwrOlb7vn4gC1bICVN6KAtSyAhtkBYy20XlADqba/KALWek3zkwC6NZvvJuALnvhN778// 1. Bilddaten & Logo
+    // Das Logo wird aus dem Objekt geladen
+    document.getElementById('logo-main').src = images.logo;
+
+    // Galerie-Bilder (Referenz auf deine hochgeladenen Dateien)
+    const galleryImages = [
+      { src: "Küche (1).jpg", alt: "Küche / Kitchen" },
+      { src: "Wohnzimmer (1).jpg", alt: "Wohnzimmer / Living Room" },
+      { src: "Schlafräume (1).jpg", alt: "Schlafzimmer / Bedroom" },
+      { src: "Bad (1).jpg", alt: "Badezimmer / Bathroom" }
+    ];
+
+    // Galerie dynamisch füllen
+    const galleryGrid = document.getElementById('main-gallery');
+    galleryImages.forEach(imgData => {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.innerHTML = `<img src="${imgData.src}" alt="${imgData.alt}" loading="lazy">`;
+      galleryGrid.appendChild(item);
+    });
+
+    // 2. Sprachumschaltung Logik
+    function setLang(lang) {
+      // Klassen am Body tauschen
+      if (lang === 'en') {
+        document.body.classList.add('lang-en');
+        document.body.classList.remove('lang-de');
+        document.getElementById('btn-en').classList.add('active');
+        document.getElementById('btn-de').classList.remove('active');
+      } else {
+        document.body.classList.add('lang-de');
+        document.body.classList.remove('lang-en');
+        document.getElementById('btn-de').classList.add('active');
+        document.getElementById('btn-en').classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>
