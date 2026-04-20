@@ -1,374 +1,208 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>Gästehaus 22 – Zimmer für Arbeiter in Asten</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --bg: #f5f5f5;
-      --card: #ffffff;
-      --accent: #222222;
-      --accent-soft: #666666;
-      --highlight: #e0b400;
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gästehaus 22 | Asten - Unterkunft für Arbeiter</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Dunkelblau für Text und Header */
+            --accent-color: #e67e22;  /* Orange für Akzente und Preise */
+            --bg-color: #f4f7f6;      /* Heller Hintergrund */
+            --white: #ffffff;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+            background-color: var(--bg-color);
+        }
 
-    body {
-      font-family: var(--font-main);
-      background: var(--bg);
-      color: #111;
-      line-height: 1.6;
-    }
+        /* Header mit Logo */
+        header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
 
-    header {
-      padding: 2.5rem 1.5rem 1.5rem;
-      text-align: center;
-      background: #ffffff;
-      border-bottom: 1px solid #e3e3e3;
-    }
+        .logo-container img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
 
-    .logo-mark {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent-soft);
-      font-size: 0.8rem;
-    }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
 
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      border: 1px solid #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
 
-    h1 {
-      font-size: clamp(2rem, 3vw, 2.6rem);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.03em;
-    }
+        /* Hauptcontainer */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
 
-    .subtitle {
-      color: var(--accent-soft);
-      font-size: 0.95rem;
-    }
+        /* Preis-Highlight-Box */
+        .price-hero {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    main {
-      max-width: 1040px;
-      margin: 2rem auto 3rem;
-      padding: 0 1.5rem;
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-      gap: 1.75rem;
-    }
+        .price-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+        }
 
-    @media (max-width: 800px) {
-      main {
-        grid-template-columns: 1fr;
-      }
-    }
+        .price-info {
+            margin-top: 1rem;
+            color: #7f8c8d;
+        }
 
-    .card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 1.75rem 1.5rem;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.04);
-    }
+        /* Sektionen */
+        section {
+            margin-bottom: 3rem;
+        }
 
-    .card + .card {
-      margin-top: 1rem;
-    }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
 
-    h2 {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 600;
-      color: var(--accent-soft);
-      margin-bottom: 1rem;
-    }
+        /* Galerie-Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
 
-    p {
-      margin-bottom: 0.75rem;
-      font-size: 0.95rem;
-    }
+        .gallery-item {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
 
-    ul {
-      list-style: none;
-      margin-top: 0.25rem;
-    }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
 
-    li {
-      font-size: 0.95rem;
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
 
-    li::before {
-      content: "•";
-      color: var(--accent);
-      font-size: 1.1rem;
-      line-height: 1;
-      margin-top: 0.05rem;
-    }
+        .gallery-item p {
+            padding: 1rem;
+            margin: 0;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: center;
+        }
 
-    .price-tag {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 0.25rem;
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin: 0.5rem 0 0.25rem;
-    }
+        /* Ausstattungs-Liste */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-    .price-tag span {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: var(--accent-soft);
-    }
+        .feature-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      background: #fff7d6;
-      color: #7a5a00;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 0.4rem;
-    }
+        .feature-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
 
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--highlight);
-    }
+        /* Kontakt-Box */
+        .contact-box {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 4rem;
+        }
 
-    .section-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent-soft);
-      margin-bottom: 0.4rem;
-    }
+        .contact-box h2 {
+            color: white;
+            border-color: white;
+        }
 
-    .highlight {
-      color: var(--accent);
-      font-weight: 500;
-    }
+        .contact-details p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
 
-    .grid-two {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 0.75rem;
-    }
+        .btn {
+            background: var(--accent-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
 
-    @media (max-width: 600px) {
-      .grid-two {
-        grid-template-columns: 1fr;
-      }
-    }
+        .btn:hover {
+            background: #d35400;
+        }
 
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
-    }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
 
-    .pill {
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid #e0e0e0;
-      font-size: 0.8rem;
-      color: var(--accent-soft);
-      background: #fafafa;
-    }
-
-    .contact-block {
-      margin-top: 0.75rem;
-      font-size: 0.95rem;
-    }
-
-    .contact-line {
-      margin-bottom: 0.35rem;
-    }
-
-    .contact-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent-soft);
-      margin-bottom: 0.15rem;
-    }
-
-    .cta {
-      margin-top: 1.25rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .btn-primary {
-      border: none;
-      border-radius: 999px;
-      padding: 0.7rem 1.4rem;
-      background: var(--accent);
-      color: #ffffff;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .btn-secondary {
-      border-radius: 999px;
-      padding: 0.7rem 1.2rem;
-      border: 1px solid #d0d0d0;
-      background: transparent;
-      color: var(--accent-soft);
-      font-size: 0.9rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.8rem;
-      color: var(--accent-soft);
-    }
-  </style>
+        /* Responsive Anpassungen */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .price-tag { font-size: 1.5rem; }
+            .contact-box { padding: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo-mark">
-      <div class="logo-icon">22</div>
-      <span>Gästehaus 22</span>
-    </div>
-    <h1>Zimmer für Arbeiter in Asten</h1>
-    <p class="subtitle">Praktische, saubere Unterkunft für Arbeiter, Monteure und Geschäftsreisende.</p>
-  </header>
 
-  <main>
-    <!-- Linke Spalte -->
-    <section class="card">
-      <div class="section-label">Übernachtung</div>
-      <h2>Preis & Konditionen</h2>
-      <p>Im Gästehaus 22 wohnen Sie unkompliziert, fair und komfortabel – ideal für längere Einsätze in der Region.</p>
-
-      <div class="price-tag">
-        35&nbsp;€
-        <span>/ Nacht pro Person</span>
-      </div>
-      <p class="highlight">Zuzüglich gesetzlicher Ortstaxe.</p>
-
-      <div class="badge">
-        <span class="badge-dot"></span>
-        <span>Attraktiv für Langzeitaufenthalte</span>
-      </div>
-
-      <div class="grid-two">
-        <div>
-          <h3 class="section-label">Ausstattung</h3>
-          <ul>
-            <li>Saubere, gepflegte Zimmer</li>
-            <li>Moderne Badezimmer</li>
-            <li>Voll ausgestattete Gemeinschaftsküche</li>
-            <li>Kostenloses WLAN</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="section-label">Für wen geeignet</h3>
-          <ul>
-            <li>Arbeiter und Monteure</li>
-            <li>Projekt- und Baustellenteams</li>
-            <li>Geschäftsreisende mit längerem Aufenthalt</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Rechte Spalte -->
-    <aside>
-      <section class="card">
-        <div class="section-label">Adresse</div>
-        <h2>Lage in Asten</h2>
-        <p>
-          <span class="highlight">Gästehaus 22</span><br />
-          Eichenstraße 22<br />
-          4481 Asten, Oberösterreich
-        </p>
-
-        <p>Ruhige Wohngegend mit guter Anbindung an wichtige Verkehrswege und Betriebe in der Umgebung.</p>
-
-        <div class="pill-list">
-          <span class="pill">Nähe A1</span>
-          <span class="pill">Richtung Linz</span>
-          <span class="pill">Einkaufsmöglichkeiten in der Nähe</span>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="section-label">Kontakt</div>
-        <h2>Buchung & Anfrage</h2>
-        <p>Schreiben Sie uns oder rufen Sie an, um Verfügbarkeiten und Konditionen für Ihr Team zu klären.</p>
-
-        <div class="contact-block">
-          <div class="contact-line">
-            <div class="contact-label">Telefon</div>
-            <div>+43 &hellip; (bitte eintragen)</div>
-          </div>
-          <div class="contact-line">
-            <div class="contact-label">E‑Mail</div>
-            <div>info@gaestehaus22.at (Beispiel)</div>
-          </div>
-        </div>
-
-        <div class="cta">
-          <a href="tel:+43" class="btn-primary">
-            Jetzt anrufen
-          </a>
-          <a href="mailto:info@gaestehaus22.at" class="btn-secondary">
-            Anfrage per E‑Mail
-          </a>
-        </div>
-      </section>
-    </aside>
-  </main>
-
-  <footer>
-    © Gästehaus 22 – Zimmervermietung für Arbeiter in 4481 Asten, Oberösterreich
-  </footer>
-</body>
-</html>
+<header>
+    <div class="container">
+        <div class="logo-container">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJb0IwAAAAYFBMVEX///8AAAAnJyc8PDxERERMTExUVFRcXFxgYGBkZGRra2twcHB0dHR6enp/f3+Dg4OHh4eMjIyUlJScnJykpKSsrKy0tLS8vLzExMTMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2kpKSurq6ysrK4uLi7u7u+vr7AwMDExMTGxsfMzMzc3Nzk5OTs7Ozk5OTMzMxcXFxsbGxMTExwcHB6enp/f3+Pj4+Tk5OdnZ2
