@@ -29,6 +29,14 @@
       color: #111;
       line-height: 1.6;
     }
+
+    body.lang-en header h1, 
+    body.lang-en header .subtitle {
+      display: block !important;
+      width: 100%;
+      text-align: center;
+    }
+    
 /* Korrektur für die Sprachumschaltung */
     [lang="en"] { display: none; }
     
@@ -40,6 +48,30 @@
     body.lang-en span[lang="en"] { display: inline; }
     body.lang-en .section-label[lang="en"] { display: block; }
     body.lang-en .gallery-section [lang="en"] { display: block; }
+
+    main {
+      max-width: 1040px;
+      margin: 2rem auto 3rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1.4fr; /* Feste Verhältnisse statt minmax für stabilere Zentrierung */
+      gap: 1.75rem;
+      justify-content: center; /* Zentriert das gesamte Grid */
+    }
+
+    @media (max-width: 800px) { 
+      main { 
+        grid-template-columns: 1fr; /* Eine saubere Spalte auf Mobile */
+        padding: 0 1rem; /* Etwas weniger Seitenabstand auf kleinen Handys */
+        gap: 1.5rem;
+      }
+      
+      .card {
+        margin: 0 auto; /* Zentriert die Karte selbst */
+        width: 100%;    /* Nutzt die volle verfügbare Breite */
+        max-width: 500px; /* Verhindert, dass Karten auf Tablets zu breit werden */
+      }
+    }
 
     /* Language Switcher */
     .lang-switch {
