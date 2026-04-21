@@ -22,7 +22,18 @@
       color: #111;
       line-height: 1.6;
     }
-
+/* Korrektur für die Sprachumschaltung */
+    [lang="en"] { display: none; }
+    
+    body.lang-en [lang="de"] { display: none; }
+    
+    /* Nutze block/inline-block statt inline für korrekte Zentrierung */
+    body.lang-en h1[lang="en"] { display: block; }
+    body.lang-en p[lang="en"] { display: block; }
+    body.lang-en span[lang="en"] { display: inline; }
+    body.lang-en .section-label[lang="en"] { display: block; }
+    body.lang-en .gallery-section [lang="en"] { display: block; }
+    
     /* Language Switcher */
     .lang-switch {
       position: absolute;
