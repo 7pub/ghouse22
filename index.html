@@ -5,7 +5,7 @@
   <title>Gästehaus 22 | Günstige Monteurzimmer & Arbeiterunterkunft in Asten</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Preiswerte Unterkunft für Arbeiter und Monteure in 4481 Asten nahe Linz. 35€ pro Nacht, WLAN, Parkplatz & Küche inklusive.">
-  
+ 
   <style>
     :root {
       --bg: #f5f5f5;
@@ -200,9 +200,9 @@
           <a href="tel:+436801610618" class="btn-primary">
             📞 <span lang="de">Jetzt anrufen</span><span lang="en">Call now</span>
           </a>
-          <a href="https://www.google.com/maps/search/?api=1&query=Eichenstraße+22+4481+Asten" target="_blank" class="btn-primary" style="background: #444;">
-            📍 <span lang="de">Jetzt navigieren</span><span lang="en">Get directions</span>
-          </a>
+        <button onclick="openNavigation()" class="btn-primary" style="background: #444; border: none; cursor: pointer; width: 100%;">
+          📍 <span lang="de">Jetzt navigieren</span><span lang="en">Get directions</span>
+        </button>
         </div>
       </section>
     </aside>
@@ -253,6 +253,33 @@
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
       });
+    }
+    function openNavigation() {
+      const lat = 48.2114; // Breitengrad für Eichenstraße 22, Asten
+      const lng = 14.4147; // Längengrad
+      const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
+      
+      // URL Schemas
+      const googleMapsAppUrl = `comgooglemaps://?daddr=${addr}&directionsmode=driving`;
+      const appleMapsUrl = `https://maps.apple.com/?daddr=${addr}`;
+      const googleWebUrl = `https://www.google.com/maps/dir/?api=1&destination=${addr}`;
+
+      // Prüfen, ob es ein iOS Gerät ist
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+      if (isIOS) {
+        // Versuch, Google Maps App zu öffnen
+        window.location.href = googleMapsAppUrl;
+
+        // Falls Google Maps nicht installiert ist, nach 500ms Apple Maps öffnen
+        setTimeout(function() {
+          if (document.hidden) return; // Wenn die App gewechselt hat, nichts tun
+          window.location.href = appleMapsUrl;
+        }, 500);
+      } else {
+        // Für Android oder Desktop: Google Maps Web/App
+        window.open(googleWebUrl, '_blank');
+      }
     }
   </script>
 </body>
