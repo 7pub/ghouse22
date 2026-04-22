@@ -37,17 +37,28 @@
       text-align: center;
     }
 
-/* Korrektur für die Sprachumschaltung */
+/* Korrektur für die Sprachumschaltung & Listen-Layout */
     [lang="en"] { display: none; }
-    
     body.lang-en [lang="de"] { display: none; }
     
-    /* Nutze block/inline-block statt inline für korrekte Zentrierung */
-    body.lang-en h1[lang="en"] { display: block; }
-    body.lang-en p[lang="en"] { display: block; }
-    body.lang-en span[lang="en"] { display: inline; }
-    body.lang-en .section-label[lang="en"] { display: block; }
-    body.lang-en .gallery-section [lang="en"] { display: block; }
+    /* Block-Elemente für Zentrierung (Header, Labels) */
+    body.lang-en h1[lang="en"], 
+    body.lang-en p[lang="en"],
+    body.lang-en .subtitle[lang="en"],
+    body.lang-en .section-label[lang="en"] { 
+      display: block !important; 
+    }
+
+    /* WICHTIG: Listen-Elemente müssen 'list-item' bleiben */
+    body.lang-en li[lang="en"] { 
+      display: list-item !important; 
+    }
+
+    /* Preis-Details und Buttons bleiben inline */
+    body.lang-en span[lang="en"],
+    body.lang-en .btn-primary span[lang="en"] { 
+      display: inline !important; 
+    }
 
     main {
       max-width: 1040px;
@@ -365,7 +376,7 @@
         btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
       });
     }
-    
+
     // 2. Galerie befüllen
       const container = document.getElementById('gallery-container');
       const lightbox = document.getElementById('lightbox');
