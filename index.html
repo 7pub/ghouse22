@@ -257,16 +257,18 @@
 
     function openNavigation() {
       const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
+      
+      // Prüfen, ob es ein Apple-Gerät ist
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
       if (isIOS) {
-        window.location.href = `comgooglemaps://?daddr=${addr}&directionsmode=driving`;
-        setTimeout(function() {
-          if (!document.hidden) {
-            window.location.href = `https://maps.apple.com/?daddr=${addr}`;
-          }
-        }, 500);
+        // Wir nutzen den offiziellen Apple Maps Link. 
+        // Vorteil: Er fragt auf iOS automatisch, ob man stattdessen Google Maps nutzen will, 
+        // falls es installiert ist, und verursacht KEINE Fehlermeldung.
+        window.location.href = `https://maps.apple.com/?daddr=${addr}`;
       } else {
+        // Für Android und Desktop: Google Maps Universal Link
+        // Dieser öffnet die App auf Android oder den Browser am PC.
         window.open(`https://www.google.com/maps/dir/?api=1&destination=${addr}`, '_blank');
       }
     }
