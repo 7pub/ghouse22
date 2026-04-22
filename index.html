@@ -108,15 +108,43 @@
     }
 
     .logo-img {
-      width: 120px;       /* Eine feste Breite festlegen */
-      height: 120px;      /* Die gleiche Höhe wie Breite für einen perfekten Kreis */
-      object-fit: cover;  /* Sorgt dafür, dass das Bild nicht verzerrt wird */
-      border-radius: 50%; /* Das ist der magische Wert für die Rundung */
-      border: 4px solid var(--card); /* Optional: Ein dezenter weißer Rahmen */
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Optional: Ein weicher Schatten */
+      width: 130px; /* Leicht vergrößert für den Effekt */
+      height: 130px;
+      object-fit: cover;
+      border-radius: 50%;
       margin-bottom: 1rem;
-      background: white; /* Falls das Bild einen transparenten Hintergrund hat */
+      background: white; /* Basis-Hintergrund */
+      
+      /* --- 3D EFFEKT START --- */
+      
+      /* 1. Subtiler weißer Rand für Definition (wie eine Lichtkante) */
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      
+      /* 2. Schatten für Tiefe (Kombination aus hartem und weichem Schatten) */
+      box-shadow: 
+        0 8px 15px rgba(0, 0, 0, 0.15), /* Äußerer, weicher Schatten */
+        0 4px 6px rgba(0, 0, 0, 0.1),  /* Innerer, härterer Schatten */
+        inset 0 -5px 10px rgba(0, 0, 0, 0.05), /* Innerer Schatten unten (Wölbung) */
+        inset 0 5px 10px rgba(255, 255, 255, 0.5); /* Innerer Glanz oben (Lichtquelle) */
+        
+      /* 3. Ein leichter, glänzender Überzug (optional, für "Glas"-Look) */
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.03) 100%);
+      
+      /* 4. Sanfter Übergang für Hover-Effekt */
+      transition: all 0.3s ease-out;
     }
+
+    /* Kleiner Bonus: Interaktion beim Drüberfahren */
+    .logo-img:hover {
+      transform: translateY(-3px) scale(1.02); /* Leichtes Anheben und Vergrößern */
+      box-shadow: 
+        0 12px 20px rgba(0, 0, 0, 0.2), /* Schatten wird weicher */
+        0 6px 8px rgba(0, 0, 0, 0.15),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.05),
+        inset 0 5px 10px rgba(255, 255, 255, 0.6); /* Glanz wird stärker */
+    }
+    
+    /* --- 3D EFFEKT ENDE --- */
 
     h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 0.5rem; }
     .subtitle { color: var(--accent-soft); font-size: 0.95rem; }
