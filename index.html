@@ -256,20 +256,32 @@
     }
 
     function openNavigation() {
+      // Koordinaten und Adresse für Asten
       const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
       
-      // Prüfen, ob es ein Apple-Gerät ist
+      // Dieser Link-Typ (dir=1) triggert in der Google Maps App sofort den Routen-Modus
+      const googleUniversalUrl = `https://www.google.com/maps/dir/?api=1&destination=${addr}&travelmode=driving`;
+      
+      // Apple Maps Link für iOS-Nutzer, die kein Google Maps haben
+      const appleMapsUrl = `https://maps.apple.com/?daddr=${addr}&dirflg=d`;
+
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
       if (isIOS) {
-        // Wir nutzen den offiziellen Apple Maps Link. 
-        // Vorteil: Er fragt auf iOS automatisch, ob man stattdessen Google Maps nutzen will, 
-        // falls es installiert ist, und verursacht KEINE Fehlermeldung.
-        window.location.href = `https://maps.apple.com/?daddr=${addr}`;
+        // Auf iOS versuchen wir zuerst den Google Link. 
+        // Safari fragt hier meist einmalig: "In Google Maps öffnen?" 
+        // Das ist die sicherste Methode ohne Fehlermeldung.
+        window.location.href = googleUniversalUrl;
+        
+        // Fallback: Nach 2 Sekunden Apple Maps öffnen, falls der Nutzer nicht wegspringt
+        setTimeout(function() {
+          if (!document.hidden) {
+            window.location.href = appleMapsUrl;
+          }
+        }, 2000);
       } else {
-        // Für Android und Desktop: Google Maps Universal Link
-        // Dieser öffnet die App auf Android oder den Browser am PC.
-        window.open(`https://www.google.com/maps/dir/?api=1&destination=${addr}`, '_blank');
+        // Auf Android/Desktop öffnet dieser Link direkt die App oder den Routenplaner
+        window.open(googleUniversalUrl, '_blank');
       }
     }
   </script>
