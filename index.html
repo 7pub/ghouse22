@@ -250,25 +250,32 @@
     });
   });
 
+  // RESTORED: Language switching logic
+  function setLang(lang) {
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
   function openNavigation() {
-      const address = "Eichenstraße 22, 4481 Asten, Austria";
-      const encodedAddr = encodeURIComponent(address);
-      
-      // Official Universal Google Maps Link
-      const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddr}`;
-      // Apple Maps Directions URL
-      const appleUrl = `maps://maps.apple.com/?daddr=${encodedAddr}`;
+    const address = "Eichenstraße 22, 4481 Asten, Austria";
+    const encodedAddr = encodeURIComponent(address);
+    
+    // Fixed template literal syntax
+    const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddr}`;
+    const appleUrl = `maps://maps.apple.com/?daddr=${encodedAddr}`;
 
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-      if (isIOS) {
-        window.location.href = appleUrl;
-        // Fallback if Apple Maps doesn't launch
-        setTimeout(() => { if (!document.hidden) window.location.href = googleUrl; }, 500);
-      } else {
-        window.open(googleUrl, '_blank');
-      }
+    if (isIOS) {
+      window.location.href = appleUrl;
+      setTimeout(() => { if (!document.hidden) window.location.href = googleUrl; }, 500);
+    } else {
+      window.open(googleUrl, '_blank');
     }
+  }
 </script>
 </body>
 </html>
