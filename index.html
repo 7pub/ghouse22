@@ -15,6 +15,7 @@
       --card: #ffffff;
       --accent: #222222;
       --accent-soft: #666666;
+      --whatsapp: #25D366;
       --font-main: system-ui, -apple-system, sans-serif;
     }
 
@@ -27,17 +28,12 @@
       line-height: 1.6;
     }
 
-    /* --- SPRACHSTEUERUNG --- */
+    /* --- LANGUAGE CONTROL --- */
     [lang="en"] { display: none; }
     body.lang-en [lang="de"] { display: none; }
     body.lang-en [lang="en"] { display: block; }
-    
-    body.lang-en h1[lang="en"], 
-    body.lang-en p[lang="en"],
-    body.lang-en .section-label[lang="en"] { display: block !important; }
-    
+    body.lang-en h1[lang="en"], body.lang-en p[lang="en"], body.lang-en .section-label[lang="en"] { display: block !important; }
     body.lang-en li[lang="en"] { display: list-item !important; }
-
     body.lang-en span[lang="en"] { display: inline !important; }
 
     /* --- LAYOUT --- */
@@ -71,14 +67,11 @@
     .lang-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
 
     .logo-img {
-      width: 130px;
-      height: 130px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-      background: white;
+      width: 130px; height: 130px;
+      object-fit: cover; border-radius: 50%;
+      margin-bottom: 1rem; background: white;
       border: 2px solid #fff;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.1), inset 0 5px 10px rgba(255,255,255,0.5);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     }
 
     h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 0.5rem; }
@@ -93,9 +86,7 @@
       gap: 1.5rem;
     }
 
-    @media (max-width: 850px) { 
-      main { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 850px) { main { grid-template-columns: 1fr; } }
 
     .card {
       background: var(--card);
@@ -122,18 +113,16 @@
       justify-content: center;
       gap: 0.5rem;
       font-weight: 600;
-      transition: transform 0.2s, background-color 0.2s;
+      transition: transform 0.2s, opacity 0.2s;
       border: none;
       width: 100%;
       cursor: pointer;
     }
 
     .btn-call { background-color: #28a745; }
-    .btn-call:hover { background-color: #218838; }
-
     .btn-nav { background-color: #007bff; }
-    .btn-nav:hover { background-color: #0069d9; }
-
+    .btn-whatsapp { background-color: var(--whatsapp); }
+    .btn-primary:hover { opacity: 0.9; }
     .btn-primary:active { transform: scale(0.98); }
 
     /* --- GALLERY --- */
@@ -204,7 +193,7 @@
           <a href="tel:+436801610618" class="btn-primary btn-call">
             📞 <span lang="de">Anrufen</span><span lang="en">Call</span>
           </a>
-          <a href="https://wa.me/436801610618" target="_blank" class="btn-primary" style="background-color: #25D366;">
+          <a href="https://wa.me/436801610618" target="_blank" class="btn-primary btn-whatsapp">
             💬 WhatsApp
           </a>
           <button onclick="openNavigation()" class="btn-primary btn-nav">
@@ -233,10 +222,10 @@
   const images = {
     logo: "Logo.webp", 
     gallery: [
-      { src: "Schlafräume.webp", alt: "Saubere Schlafräume für Monteure in Asten" },
-      { src: "Wohnzimmer.webp", alt: "Gemütliches Wohnzimmer Gästehaus 22" },
-      { src: "Küche.webp", alt: "Voll ausgestattete Gemeinschaftsküche" },
-      { src: "Bad.webp", alt: "Modernes Badezimmer" }
+      { src: "Schlafräume.webp", alt: "Saubere Schlafräume für Monteure" },
+      { src: "Wohnzimmer.webp", alt: "Gemütliches Wohnzimmer" },
+      { src: "Küche.webp", alt: "Ausgestattete Küche" },
+      { src: "Bad.webp", alt: "Badezimmer" }
     ]
   };
 
@@ -265,7 +254,6 @@
     document.body.classList.toggle('lang-en', lang === 'en');
     document.documentElement.lang = lang;
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      // Cleaner matching using the data-lang attribute
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
   }
@@ -274,16 +262,14 @@
     const address = "Eichenstraße 22, 4481 Asten, Austria";
     const encodedAddr = encodeURIComponent(address);
     
-    // Standard Google Maps Directions URL (Best for App/Web cross-compatibility)
-    const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddr}`;
-    // Apple Maps Directions URL
+    // Official Google Maps URL Action
+    const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddr}`;
     const appleUrl = `maps://maps.apple.com/?daddr=${encodedAddr}`;
 
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     if (isIOS) {
       window.location.href = appleUrl;
-      // Failover to Google if Apple Maps fails/isn't preferred
       setTimeout(() => { if (!document.hidden) window.location.href = googleUrl; }, 500);
     } else {
       window.open(googleUrl, '_blank');
