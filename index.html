@@ -26,6 +26,7 @@
       background: var(--bg);
       color: #111;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* --- LANGUAGE CONTROL --- */
@@ -117,6 +118,7 @@
       border: none;
       width: 100%;
       cursor: pointer;
+      font-family: inherit;
     }
 
     .btn-call { background-color: #28a745; }
@@ -142,10 +144,10 @@
       display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.9); align-items: center; justify-content: center; cursor: zoom-out;
     }
-    #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; }
+    #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; border: 2px solid #fff; }
   </style>
 </head>
-<body id="top">
+<body>
 
   <header>
     <div class="lang-switch">
@@ -174,7 +176,13 @@
         <li>✅ <span lang="de">Modernes Badezimmer</span><span lang="en">Modern bathroom</span></li>
       </ul>
     </section>
-
+    <section class="card" id="install-section" style="display: none;">
+      <div class="section-label" lang="de">App Installieren</div>
+      <div class="section-label" lang="en">Install App</div>
+      <button id="install-button" class="btn-primary" style="background-color: #333;">
+        📲 <span lang="de">App hinzufügen</span><span lang="en">Add to Home Screen</span>
+      </button>
+    </section>
     <aside style="display: flex; flex-direction: column; gap: 1.5rem;">
       <section class="card">
         <div class="section-label" lang="de">Lage</div>
@@ -216,7 +224,7 @@
     © 2026 Gästehaus 22 – 4481 Asten
   </footer>
 
-  <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img"></div>
+  <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" alt="Enlarged view"></div>
 
 <script>
   const images = {
@@ -262,7 +270,7 @@
     const address = "Eichenstraße 22, 4481 Asten, Austria";
     const encodedAddr = encodeURIComponent(address);
     
-    // Fixed: Added missing $ for template literal
+    // Fixed: Corrected template literal variable injection
     const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddr}`;
     const appleUrl = `maps://maps.apple.com/?daddr=${encodedAddr}`;
 
@@ -274,6 +282,48 @@
     } else {
       window.open(googleUrl, '_blank');
     }
+  }
+  let deferredPrompt;
+const installSection = document.getElementById('install-section');
+const installBtn = document.getElementById('install-button');
+
+// 1. Android & Desktop: Catch the browser's install prompt
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault(); // Prevent the mini-infobar from appearing on mobile
+  deferredPrompt = e;
+  installSection.style.display = 'block'; // Show our custom button
+});
+
+installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      installSection.style.display = 'none';
+    }
+    deferredPrompt = null;
+  } else {
+    // 2. iOS Logic: Manual instructions (Apple doesn't support the auto-prompt)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) {
+      const msg = document.documentElement.lang === 'de' 
+        ? "Um diese App zu installieren: Tippen Sie auf 'Teilen' und dann auf 'Zum Home-Bildschirm hinzufügen'." 
+        : "To install this app: Tap 'Share' and then 'Add to Home Screen'.";
+      alert(msg);
+    }
+  }
+});
+
+  // Hide button if already installed
+  window.addEventListener('appinstalled', () => {
+    installSection.style.display = 'none';
+  });
+
+  // 3. Register Service Worker (Required for PWA)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW failed', err));
+    });
   }
 </script>
 </body>
