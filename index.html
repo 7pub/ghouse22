@@ -226,7 +226,7 @@
 
   <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img"></div>
 
-  <script>
+<script>
     const images = {
       logo: "Logo.webp", 
       gallery: ["Schlafräume.webp", "Wohnzimmer.webp", "Küche.webp", "Bad.webp"]
@@ -245,6 +245,7 @@
         item.className = 'gallery-item';
         const img = document.createElement('img');
         img.src = src;
+        img.alt = "Unterkunft Gästehaus 22"; // Improved SEO/Accessibility
         img.onclick = () => { lbImg.src = src; lb.style.display = 'flex'; };
         item.appendChild(img);
         container.appendChild(item);
@@ -253,38 +254,33 @@
 
     function setLang(lang) {
       document.body.classList.toggle('lang-en', lang === 'en');
+      document.documentElement.lang = lang; // Updates the HTML lang attribute
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
       });
     }
 
     function openNavigation() {
-      // Koordinaten und Adresse für Asten
-      const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
+      const address = "Gästehaus 22, Eichenstraße 22, 4481 Asten, Austria";
+      const encodedAddr = encodeURIComponent(address);
       
-      // Dieser Link-Typ (dir=1) triggert in der Google Maps App sofort den Routen-Modus
-      const googleUniversalUrl = `https://www.google.com/maps/dir/?api=1&destination=${addr}&travelmode=driving`;
-      
-      // Apple Maps Link für iOS-Nutzer, die kein Google Maps haben
-      const appleMapsUrl = `https://maps.apple.com/?daddr=${addr}&dirflg=d`;
+      // Standard Google Maps Directions URL
+      const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddr}`;
+      // Apple Maps Directions URL
+      const appleUrl = `maps://maps.apple.com/?daddr=${encodedAddr}`;
 
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
       if (isIOS) {
-        // Auf iOS versuchen wir zuerst den Google Link. 
-        // Safari fragt hier meist einmalig: "In Google Maps öffnen?" 
-        // Das ist die sicherste Methode ohne Fehlermeldung.
-        window.location.href = googleUniversalUrl;
+        // Try Apple Maps first on iOS, it's the smoothest native experience
+        window.location.href = appleUrl;
         
-        // Fallback: Nach 2 Sekunden Apple Maps öffnen, falls der Nutzer nicht wegspringt
-        setTimeout(function() {
-          if (!document.hidden) {
-            window.location.href = appleMapsUrl;
-          }
-        }, 2);
+        // Fallback to Google Maps in browser if they don't have Apple Maps
+        setTimeout(() => {
+          if (!document.hidden) window.location.href = googleUrl;
+        }, 500);
       } else {
-        // Auf Android/Desktop öffnet dieser Link direkt die App oder den Routenplaner
-        window.open(googleUniversalUrl, '_blank');
+        window.open(googleUrl, '_blank');
       }
     }
   </script>
