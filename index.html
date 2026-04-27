@@ -250,7 +250,6 @@
     });
   });
 
-  // RESTORED: Language switching logic
   function setLang(lang) {
     document.body.classList.toggle('lang-en', lang === 'en');
     document.documentElement.lang = lang;
@@ -263,7 +262,7 @@
     const address = "Eichenstraße 22, 4481 Asten, Austria";
     const encodedAddr = encodeURIComponent(address);
     
-    // Fixed template literal syntax
+    // Standard Google Maps Directions URL
     const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddr}`;
     const appleUrl = `maps://maps.apple.com/?daddr=${encodedAddr}`;
 
