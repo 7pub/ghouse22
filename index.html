@@ -2,14 +2,14 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>G&auml;stehaus 22 | G&uuml;nstige Monteurzimmer & Arbeiterunterkunft in Asten</title>
+  <title>Gästehaus 22 | Günstige Monteurzimmer & Arbeiterunterkunft in Asten</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="+43 680 1610618 Unterkunft für Arbeiter & Monteure in Asten nahe Linz. 35€ pro Nacht, WLAN, Parkplatz & K&uuml;che inklusive.">
+  <meta name="description" content="+43 680 1610618 Unterkunft für Arbeiter & Monteure in Asten nahe Linz. 35€ pro Nacht, WLAN, Parkplatz & Küche inklusive.">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.json">
+  <link rel="manifest" href="/site.webmanifest">
 
   <style>
     :root {
@@ -40,7 +40,6 @@
     body.lang-en li[lang="en"] { display: flex !important; }
     body.lang-en span[lang="en"] { display: inline !important; }
 
-    /* --- LAYOUT --- */
     header {
       padding: 4.5rem 1.5rem 2rem;
       text-align: center;
@@ -157,15 +156,14 @@
       background: rgba(0,0,0,0.9); align-items: center; justify-content: center; cursor: zoom-out;
     }
     #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; }
-    .footer-heart{text-align:center;font-family: open sans, sans-serif;}
-    .emoji{vertical-align: middle;}
   </style>
 </head>
-<body id="top">
+<body>
     <header>
       <div class="top-bar">
         <button id="install-button" class="install-btn-top" style="display:none;">
           <i data-lucide="download-cloud"></i>
+          <span lang="de">App laden</span><span lang="en">Install App</span>
         </button>
 
         <div class="lang-switch">
@@ -183,7 +181,7 @@
 
     <main>
       <section class="card">
-        <div class="section-label" lang="de">&Uuml;bernachtung</div>
+        <div class="section-label" lang="de">Übernachtung</div>
         <div class="section-label" lang="en">Accommodation</div>
         <h2 lang="de">Preise & Konditionen</h2>
         <h2 lang="en">Prices & Conditions</h2>
@@ -214,12 +212,8 @@
         <section class="card">
           <div class="section-label" lang="de">Lage</div>
           <div class="section-label" lang="en">Location</div>
-          <p><strong>G&auml;stehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Austria</p>
-          <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent-soft); margin-bottom: 1rem;">
-            <span lang="de">Direkt an der A1 Autobahn & nahe Linz.</span>
-            <span lang="en">Right by the A1 highway & near Linz.</span>
-          </p>
-          <button onclick="openNavigation()" class="btn-primary btn-nav">
+          <p><strong>Gästehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Austria</p>
+          <button onclick="openNavigation()" class="btn-primary btn-nav" style="margin-top:1rem;">
             <i data-lucide="map-pin"></i> <span lang="de">Route anzeigen</span><span lang="en">Get directions</span>
           </button>
         </section>
@@ -228,109 +222,102 @@
       <section class="gallery-section card" style="grid-column: 1 / -1;">
         <div class="section-label" lang="de">Galerie</div>
         <div class="section-label" lang="en">Gallery</div>
-        <h2 lang="de">Unsere R&auml;umlichkeiten</h2>
-        <h2 lang="en">Our Premises</h2>
         <div class="gallery-grid" id="gallery-container"></div>
       </section>
     </main>
 
-  <footer>
-    © 2026 Gästehaus 22 – 4481 Asten
-    <p class="footer-heart">Build with 
-      <img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
-    </p>
-  </footer>
+  <footer>© 2026 Gästehaus 22 – 4481 Asten</footer>
 
   <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img"></div>
 
   <script src="https://unpkg.com/lucide@latest"></script>
-  
   <script>
     const images = {
-        logo: "Logo.webp",
-        gallery: ["bedrooms.webp", "livingroom.webp", "kitchen.webp", "bathroom.webp"]
+      logo: "Logo.webp",
+      gallery: ["bedrooms.webp", "livvingroom.webp", "kitchen.webp", "bathroom.webp"]
     };
 
+    // --- SPRACHE & INITIALISIERUNG ---
+    function setLang(lang) {
+      document.body.classList.toggle('lang-en', lang === 'en');
+      document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-        // AUTOMATISCHE SPRACHWAHL
-        const userLang = navigator.language || navigator.userLanguage; 
-        if (!userLang.startsWith('de')) {
-            setLang('en');
-        }
+      const userLang = navigator.language || navigator.userLanguage; 
+      if (userLang && !userLang.startsWith('de')) setLang('en');
+      lucide.createIcons();
 
-        // Icons rendern
-        lucide.createIcons();
+      document.getElementById('logo-placeholder').src = images.logo;
+      const container = document.getElementById('gallery-grid'); // Fallback check below
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
 
-        const logoEl = document.getElementById('logo-placeholder');
-        if (logoEl && images.logo) logoEl.src = images.logo;
-
-        const container = document.getElementById('gallery-container');
-        const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-
-        if (container) {
-            images.gallery.forEach((src) => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = "Unterkunft Asten";
-                img.loading = "lazy";
-                img.onclick = () => { lbImg.src = src; lb.style.display = 'flex'; };
-                item.appendChild(img);
-                container.appendChild(item);
-            });
-        }
+      images.gallery.forEach(src => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.innerHTML = `<img src="${src}" alt="Zimmer" loading="lazy">`;
+        div.onclick = () => { lbImg.src = src; lb.style.display = 'flex'; };
+        document.getElementById('gallery-container').appendChild(div);
+      });
     });
 
-    function setLang(lang) {
-        document.body.classList.toggle('lang-en', lang === 'en');
-        document.getElementById('btn-de').classList.toggle('active', lang === 'de');
-        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    }
-
     function openNavigation() {
-        const addr = encodeURIComponent("G&auml;stehaus 22, Eichenstraße 22, 4481 Asten");
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (isIOS) {
-            window.location.href = `https://maps.apple.com/?daddr=${addr}`;
-        } else {
-            window.open(`https://www.google.com/maps/dir/?api=1&destination=${addr}`, '_blank');
-        }
+      const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        window.location.href = `maps://maps.apple.com/?daddr=${addr}`;
+      } else {
+        window.open(`https://www.google.com/maps/dir/?api=1&destination=${addr}`, '_blank');
+      }
     }
 
-    // PWA Installation
+    // --- PWA LOGIK (FIXED) ---
     let deferredPrompt;
     const installBtn = document.getElementById('install-button');
 
+    // Das Event wird abgefangen
     window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        if (installBtn) installBtn.style.display = 'flex';
+      console.log('PWA: beforeinstallprompt gefeuert');
+      e.preventDefault(); // Browser-Banner verhindern
+      deferredPrompt = e; // Event speichern
+      installBtn.style.display = 'flex'; // Eigenen Button zeigen
     });
 
-    if (installBtn) {
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') installBtn.style.display = 'none';
-                deferredPrompt = null;
-            } else {
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                if (isIOS) {
-                    alert(document.body.classList.contains('lang-en') 
-                        ? "To install: Tap 'Share' and then 'Add to Home Screen'." 
-                        : "Installation: Tippen Sie auf 'Teilen' und dann auf 'Zum Home-Bildschirm hinzufügen'.");
-                }
-            }
-        });
-    }
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) {
+        // Falls kein Prompt da ist (z.B. iOS), zeige Info
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        if (isIOS) {
+          alert(document.body.classList.contains('lang-en') 
+            ? "To install: Tap 'Share' and 'Add to Home Screen'." 
+            : "Installation: Tippen Sie auf 'Teilen' und 'Zum Home-Bildschirm'.");
+        }
+        return;
+      }
+      
+      // Prompt zeigen
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User Choice: ${outcome}`);
+      
+      if (outcome === 'accepted') {
+        installBtn.style.display = 'none';
+      }
+      deferredPrompt = null;
+    });
 
+    window.addEventListener('appinstalled', () => {
+      console.log('PWA: Installiert');
+      installBtn.style.display = 'none';
+      deferredPrompt = null;
+    });
+
+    // Service Worker Register
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW Fehler', err));
-        });
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
     }
   </script>
 </body>
