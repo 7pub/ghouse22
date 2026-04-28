@@ -114,7 +114,6 @@
     .price-tag { font-size: 1.8rem; font-weight: 700; margin: 0.5rem 0; }
     .price-tag span { font-size: 0.9rem; font-weight: 400; color: var(--accent-soft); }
 
-    /* --- ICONS & LISTEN --- */
     ul { list-style: none; margin-top: 1rem; }
     li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.75rem; }
     
@@ -142,7 +141,6 @@
     .btn-nav { background-color: var(--link); }
     .btn-primary:active { transform: scale(0.98); }
 
-    /* --- GALLERY --- */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -160,17 +158,6 @@
     }
     #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; }
     .footer-heart{text-align:center;font-family: open sans, sans-serif;}
-
-    .footer-heart a{border-bottom: 1px solid #453886;color: #453886;padding-bottom: .25em; text-decoration: none;}
-
-    .footer-heart a:hover{color:#2196f3; background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23453886' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
-      background-position: bottom;
-      background-repeat: repeat-x;
-      background-size: 20%;
-      border-bottom: 0;
-      padding-bottom: .3em;
-      text-decoration: none;}
-
     .emoji{vertical-align: middle;}
   </style>
 </head>
@@ -179,12 +166,11 @@
       <div class="top-bar">
         <button id="install-button" class="install-btn-top" style="display:none;">
           <i data-lucide="download-cloud"></i>
-          <!--<span lang="de"></span><span lang="en"></span>-->
         </button>
 
         <div class="lang-switch">
-          <button class="lang-btn active" onclick="setLang('de')">DE</button>
-          <button class="lang-btn" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+          <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
         </div>
       </div>
       
@@ -251,10 +237,7 @@
   <footer>
     © 2026 Gästehaus 22 – 4481 Asten
     <p class="footer-heart">Build with 
-      <g-emoji class="g-emoji" alias="heart" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
-        <img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
-      </g-emoji> <!--in VS-Code
-      <a href="https://"></a>-->
+      <img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
     </p>
   </footer>
 
@@ -263,13 +246,18 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <script>
-    // 1. Bilder & Icons initialisieren
     const images = {
         logo: "Logo.webp",
         gallery: ["Schlafräume.webp", "Wohnzimmer.webp", "Küche.webp", "Bad.webp"]
     };
 
     document.addEventListener('DOMContentLoaded', () => {
+        // AUTOMATISCHE SPRACHWAHL
+        const userLang = navigator.language || navigator.userLanguage; 
+        if (!userLang.startsWith('de')) {
+            setLang('en');
+        }
+
         // Icons rendern
         lucide.createIcons();
 
@@ -295,15 +283,12 @@
         }
     });
 
-    // 2. Sprache umschalten
     function setLang(lang) {
         document.body.classList.toggle('lang-en', lang === 'en');
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
-        });
+        document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     }
 
-    // 3. Navigation
     function openNavigation() {
         const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -314,7 +299,7 @@
         }
     }
 
-    // 4. PWA Installation
+    // PWA Installation
     let deferredPrompt;
     const installBtn = document.getElementById('install-button');
 
