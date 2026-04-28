@@ -150,6 +150,8 @@
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; }
 
     footer { text-align: center; padding: 3rem 1rem; color: var(--accent-soft); font-size: 0.85rem; }
+    .footer-heart { margin-top: 0.5rem; }
+    .emoji { vertical-align: middle; }
 
     #lightbox {
       display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%;
@@ -225,7 +227,14 @@
       </section>
     </main>
 
-  <footer>© 2026 Gästehaus 22 – 4481 Asten</footer>
+  <footer>
+    © 2026 Gästehaus 22 – 4481 Asten
+    <p class="footer-heart">Build with 
+      <g-emoji class="g-emoji" alias="heart" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
+        <img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
+      </g-emoji>
+    </p>
+  </footer>
 
   <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img"></div>
 
