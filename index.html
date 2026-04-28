@@ -71,6 +71,7 @@
       transition: 0.2s;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       color: inherit;
     }
@@ -162,7 +163,6 @@
       <div class="top-bar">
         <button id="install-button" class="install-btn-top" style="display:none;">
           <i data-lucide="download-cloud"></i>
-          <span lang="de">App laden</span><span lang="en">Install App</span>
         </button>
 
         <div class="lang-switch">
@@ -231,7 +231,6 @@
 
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
-    // Korrigierter Dateiname: livingroom (nur ein 'v')
     const images = {
       logo: "Logo.webp",
       gallery: ["bedrooms.webp", "livingroom.webp", "kitchen.webp", "bathroom.webp"]
@@ -271,7 +270,6 @@
       }
     }
 
-    // --- PWA LOGIK ---
     let deferredPrompt;
     const installBtn = document.getElementById('install-button');
 
