@@ -172,174 +172,158 @@
   </style>
 </head>
 <body id="top">
-
     <header>
-    <div class="top-bar">
-        <button id="install-button" class="install-btn-top">
-        📲 <span lang="de">Als App installieren</span><span lang="en">Install as App</span>
-        </button>
+      <div class="top-bar">
+          <button id="install-button" class="install-btn-top">
+          📲 <span lang="de">Als App installieren</span><span lang="en">Install as App</span>
+          </button>
 
-        <div class="lang-switch">
-        <button class="lang-btn active" onclick="setLang('de')">DE</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-        </div>
-    </div>
-    
-    <img id="logo-placeholder" alt="Gästehaus 22" class="logo-img">
-    <h1 lang="de">Zimmer für Arbeiter in Asten</h1>
-    <h1 lang="en">Rooms for workers in Asten</h1>
-    <p class="subtitle" lang="de">Praktische, saubere Unterkunft für Monteure und Teams.</p>
-    <p class="subtitle" lang="en">Practical, clean accommodation for fitters and teams.</p>
+          <div class="lang-switch">
+          <button class="lang-btn active" onclick="setLang('de')">DE</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+          </div>
+      </div>
+      <img id="logo-placeholder" alt="Gästehaus 22" class="logo-img">
+      <h1 lang="de">Zimmer für Arbeiter in Asten</h1>
+      <h1 lang="en">Rooms for workers in Asten</h1>
+      <p class="subtitle" lang="de">Praktische, saubere Unterkunft für Monteure und Teams.</p>
+      <p class="subtitle" lang="en">Practical, clean accommodation for fitters and teams.</p>
     </header>
-
     <main>
-    <section class="card">
-        <div class="section-label" lang="de">Übernachtung</div>
-        <div class="section-label" lang="en">Accommodation</div>
-        <h2 lang="de">Preise & Konditionen</h2>
-        <h2 lang="en">Prices & Conditions</h2>
-        <div class="price-tag">35 € <span lang="de">/ Nacht pro Person</span><span lang="en">/ night per person</span></div>
-        <p lang="de">Inklusive WLAN, Parkplatz und Endreinigung.</p>
-        <p lang="en">Including Wi-Fi, parking and final cleaning.</p>
-        <ul>
-        <li>✅ <span lang="de">Saubere Einzelbetten</span><span lang="en">Clean single beds</span></li>
-        <li>✅ <span lang="de">Voll ausgestattete Küche</span><span lang="en">Fully equipped kitchen</span></li>
-        <li>✅ <span lang="de">Modernes Badezimmer</span><span lang="en">Modern bathroom</span></li>
-        </ul>
-    </section>
-
-    <aside style="display: flex; flex-direction: column; gap: 1.5rem;">
-        <section class="card">
-        <div class="section-label" lang="de">Kontakt</div>
-        <div class="section-label" lang="en">Contact</div>
-        <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem;">
-            <a href="https://wa.me/436801610618" class="btn-primary btn-whatsapp" target="_blank">
-            💬 WhatsApp
-            </a>
-            
-            <a href="tel:+436801610618" class="btn-primary btn-call">
-            📞 <span lang="de">Anrufen</span><span lang="en">Call</span>
-            </a>
-        </div>
-        </section>
-                <section class="card">
-        <div class="section-label" lang="de">Lage</div>
-        <div class="section-label" lang="en">Location</div>
-        <p><strong>Gästehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Austria</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent-soft); margin-bottom: 1rem;">
-            <span lang="de">Direkt an der A1 Autobahn & nahe Linz.</span>
-            <span lang="en">Right by the A1 highway & near Linz.</span>
-        </p>
-        <button onclick="openNavigation()" class="btn-primary btn-nav">
-            📍 <span lang="de">Route anzeigen</span><span lang="en">Get directions</span>
-        </button>
-        </section>
-    </aside>
-
-    <section class="gallery-section card">
-        <div class="section-label" lang="de">Galerie</div>
-        <div class="section-label" lang="en">Gallery</div>
-        <h2 lang="de">Unsere Räumlichkeiten</h2>
-        <h2 lang="en">Our Premises</h2>
-        <div class="gallery-grid" id="gallery-container"></div>
-    </section>
+      <section class="card">
+          <div class="section-label" lang="de">Übernachtung</div>
+          <div class="section-label" lang="en">Accommodation</div>
+          <h2 lang="de">Preise & Konditionen</h2>
+          <h2 lang="en">Prices & Conditions</h2>
+          <div class="price-tag">35 € <span lang="de">/ Nacht pro Person</span><span lang="en">/ night per person</span></div>
+          <p lang="de">Inklusive WLAN, Parkplatz und Endreinigung.</p>
+          <p lang="en">Including Wi-Fi, parking and final cleaning.</p>
+          <ul>
+          <li>✅ <span lang="de">Saubere Einzelbetten</span><span lang="en">Clean single beds</span></li>
+          <li>✅ <span lang="de">Voll ausgestattete Küche</span><span lang="en">Fully equipped kitchen</span></li>
+          <li>✅ <span lang="de">Modernes Badezimmer</span><span lang="en">Modern bathroom</span></li>
+          </ul>
+      </section>
+      <aside style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <section class="card">
+          <div class="section-label" lang="de">Kontakt</div>
+          <div class="section-label" lang="en">Contact</div>
+          <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem;">
+              <a href="https://wa.me/436801610618" class="btn-primary btn-whatsapp" target="_blank">
+              💬 WhatsApp
+              </a>
+              
+              <a href="tel:+436801610618" class="btn-primary btn-call">
+              📞 <span lang="de">Anrufen</span><span lang="en">Call</span>
+              </a>
+          </div>
+          </section>
+                  <section class="card">
+          <div class="section-label" lang="de">Lage</div>
+          <div class="section-label" lang="en">Location</div>
+          <p><strong>Gästehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Austria</p>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent-soft); margin-bottom: 1rem;">
+              <span lang="de">Direkt an der A1 Autobahn & nahe Linz.</span>
+              <span lang="en">Right by the A1 highway & near Linz.</span>
+          </p>
+          <button onclick="openNavigation()" class="btn-primary btn-nav">
+              📍 <span lang="de">Route anzeigen</span><span lang="en">Get directions</span>
+          </button>
+          </section>
+      </aside>
+      <section class="gallery-section card">
+          <div class="section-label" lang="de">Galerie</div>
+          <div class="section-label" lang="en">Gallery</div>
+          <h2 lang="de">Unsere Räumlichkeiten</h2>
+          <h2 lang="en">Our Premises</h2>
+          <div class="gallery-grid" id="gallery-container"></div>
+      </section>
     </main>
-
-  <footer>
-    © 2026 Gästehaus 22 – 4481 Asten
-  </footer>
-
+  <footer>© 2026 Gästehaus 22 – 4481 Asten</footer>
   <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img"></div>
+  <script>
+      // 1. Bilder-Konfiguration
+      const images = {
+          logo: "Logo.webp",
+          gallery: ["Schlafräume.webp", "Wohnzimmer.webp", "Küche.webp", "Bad.webp"]
+      };
+      document.addEventListener('DOMContentLoaded', () => {
+          const logoEl = document.getElementById('logo-placeholder');
+          if (logoEl && images.logo) logoEl.src = images.logo;
 
-<script>
-    // 1. Bilder-Konfiguration
-    const images = {
-        logo: "Logo.webp",
-        gallery: ["Schlafräume.webp", "Wohnzimmer.webp", "Küche.webp", "Bad.webp"]
-    };
+          const container = document.getElementById('gallery-container');
+          const lb = document.getElementById('lightbox');
+          const lbImg = document.getElementById('lightbox-img');
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const logoEl = document.getElementById('logo-placeholder');
-        if (logoEl && images.logo) logoEl.src = images.logo;
+          if (container) {
+              images.gallery.forEach((src) => {
+                  const item = document.createElement('div');
+                  item.className = 'gallery-item';
+                  const img = document.createElement('img');
+                  img.src = src;
+                  img.alt = "Unterkunft Asten";
+                  img.loading = "lazy";
+                  img.onclick = () => { lbImg.src = src; lb.style.display = 'flex'; };
+                  item.appendChild(img);
+                  container.appendChild(item);
+              });
+          }
+      });
+      // 2. Sprache umschalten
+      function setLang(lang) {
+          document.body.classList.toggle('lang-en', lang === 'en');
+          document.querySelectorAll('.lang-btn').forEach(btn => {
+              btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
+          });
+      }
+      // 3. Navigation
+      function openNavigation() {
+          const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
+          const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${addr}`;
+          const appleUrl = `https://maps.apple.com/?daddr=${addr}`;
 
-        const container = document.getElementById('gallery-container');
-        const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-        if (container) {
-            images.gallery.forEach((src) => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = "Unterkunft Asten";
-                img.loading = "lazy";
-                img.onclick = () => { lbImg.src = src; lb.style.display = 'flex'; };
-                item.appendChild(img);
-                container.appendChild(item);
-            });
-        }
-    });
+          if (isIOS) {
+              window.location.href = appleUrl;
+          } else {
+              window.open(googleUrl, '_blank');
+          }
+      }
+      // 4. PWA Installation
+      let deferredPrompt;
+      const installBtn = document.getElementById('install-button');
 
-    // 2. Sprache umschalten
-    function setLang(lang) {
-        document.body.classList.toggle('lang-en', lang === 'en');
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
-        });
-    }
-
-    // 3. Navigation
-    function openNavigation() {
-        const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
-        const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${addr}`;
-        const appleUrl = `https://maps.apple.com/?daddr=${addr}`;
-
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-        if (isIOS) {
-            window.location.href = appleUrl;
-        } else {
-            window.open(googleUrl, '_blank');
-        }
-    }
-
-    // 4. PWA Installation
-    let deferredPrompt;
-    const installBtn = document.getElementById('install-button');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        if (installBtn) installBtn.style.display = 'flex';
-    });
-
-    if (installBtn) {
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') installBtn.style.display = 'none';
-                deferredPrompt = null;
-            } else {
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                if (isIOS) {
-                    const msg = document.body.classList.contains('lang-en') 
-                        ? "To install: Tap 'Share' and then 'Add to Home Screen'." 
-                        : "Installation: Tippen Sie auf 'Teilen' und dann auf 'Zum Home-Bildschirm hinzufügen'.";
-                    alert(msg);
-                }
-            }
-        });
-    }
-
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-                .then(reg => console.log('SW aktiv'))
-                .catch(err => console.log('SW Fehler', err));
-        });
-    }
-</script>
+      window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          if (installBtn) installBtn.style.display = 'flex';
+      });
+      if (installBtn) {
+          installBtn.addEventListener('click', async () => {
+              if (deferredPrompt) {
+                  deferredPrompt.prompt();
+                  const { outcome } = await deferredPrompt.userChoice;
+                  if (outcome === 'accepted') installBtn.style.display = 'none';
+                  deferredPrompt = null;
+              } else {
+                  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                  if (isIOS) {
+                      const msg = document.body.classList.contains('lang-en') 
+                          ? "To install: Tap 'Share' and then 'Add to Home Screen'." 
+                          : "Installation: Tippen Sie auf 'Teilen' und dann auf 'Zum Home-Bildschirm hinzufügen'.";
+                      alert(msg);
+                  }
+              }
+          });
+      }
+      if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/sw.js')
+                  .then(reg => console.log('SW aktiv'))
+                  .catch(err => console.log('SW Fehler', err));
+          });
+      }
+  </script>
 </body>
 </html>
