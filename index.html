@@ -33,6 +33,7 @@
     }
 
     /* --- SPRACHSTEUERUNG --- */
+    /* Igbo ist standardmäßig ausgeblendet und es gibt keine Klasse 'lang-ig', die es einblendet */
     [lang="en"], [lang="ig"] { display: none; }
     
     body.lang-en [lang="de"], body.lang-en [lang="ig"] { display: none; }
@@ -40,12 +41,6 @@
     body.lang-en h1[lang="en"], body.lang-en p[lang="en"], body.lang-en .section-label[lang="en"] { display: block !important; }
     body.lang-en li[lang="en"] { display: flex !important; }
     body.lang-en span[lang="en"] { display: inline !important; }
-
-    body.lang-ig [lang="de"], body.lang-ig [lang="en"] { display: none; }
-    body.lang-ig [lang="ig"] { display: block; }
-    body.lang-ig h1[lang="ig"], body.lang-ig p[lang="ig"], body.lang-ig .section-label[lang="ig"] { display: block !important; }
-    body.lang-ig li[lang="ig"] { display: flex !important; }
-    body.lang-ig span[lang="ig"] { display: inline !important; }
 
     header {
       padding: 4.5rem 1.5rem 2rem;
@@ -177,8 +172,7 @@
         <div class="lang-switch">
           <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
           <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-          <button class="lang-btn" id="btn-ig" onclick="setLang('ig')">IG</button>
-        </div>
+          </div>
       </div>
       
       <img id="logo-placeholder" alt="Gästehaus 22" class="logo-img">
@@ -286,21 +280,21 @@
     };
 
     function setLang(lang) {
-      document.body.classList.remove('lang-en', 'lang-ig');
-      if(lang !== 'de') {
-        document.body.classList.add('lang-' + lang);
+      document.body.classList.remove('lang-en');
+      // Igbo wird hier ignoriert, selbst wenn es aufgerufen würde
+      if(lang === 'en') {
+        document.body.classList.add('lang-en');
       }
       
       document.getElementById('btn-de').classList.toggle('active', lang === 'de');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-      document.getElementById('btn-ig').classList.toggle('active', lang === 'ig');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       const userLang = navigator.language || navigator.userLanguage; 
-      if (userLang.startsWith('ig')) {
-        setLang('ig');
-      } else if (!userLang.startsWith('de')) {
+      
+      // Automatische Erkennung für Igbo entfernt.
+      if (!userLang.startsWith('de')) {
         setLang('en');
       }
       
@@ -322,12 +316,9 @@
 
   function openNavigation() {
         const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
-        
-        // Prüfen, ob es ein Apple-Gerät ist
         if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
           window.location.href = `maps://maps.apple.com/?daddr=${addr}`;
         } else {
-          // Korrekter, universeller Link für Google Maps (funktioniert überall ohne Fehler)
           window.open(`https://www.google.com/maps/dir/?api=1&destination=${addr}`, '_blank');
         }
       }
@@ -345,7 +336,6 @@
         if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
           let msg = "Installation: Tippen Sie auf 'Teilen' und 'Zum Home-Bildschirm'.";
           if(document.body.classList.contains('lang-en')) msg = "To install: Tap 'Share' and 'Add to Home Screen'.";
-          if(document.body.classList.contains('lang-ig')) msg = "Iji tinye ya: Pịa 'Share' ma họrọ 'Add to Home Screen'.";
           alert(msg);
         }
         return;
