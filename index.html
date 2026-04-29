@@ -33,30 +33,64 @@
     }
 
     /* --- SPRACHSTEUERUNG --- */
-    /* Verstecke alle Sprachen standardmäßig */
-    [lang="en"], [lang="ig"], [lang="ru"], [lang="hu"], [lang="pl"], [lang="my"], [lang="es"], [lang="cs"], [lang="ro"], [lang="fr"], [lang="it"] { 
-      display: none; 
-    }
+    /* Alle außer DE verstecken */
+    [lang="en"], [lang="ig"], [lang="ru"], [lang="hu"], [lang="pl"], [lang="my"], [lang="es"], [lang="cs"], [lang="ro"], [lang="fr"], [lang="it"] { display: none; }
     
-    /* Logik für die Anzeige der aktiven Sprache */
-    body.lang-en [lang="en"], body.lang-ig [lang="ig"], body.lang-ru [lang="ru"], 
-    body.lang-hu [lang="hu"], body.lang-pl [lang="pl"], body.lang-my [lang="my"],
-    body.lang-es [lang="es"], body.lang-cs [lang="cs"], body.lang-ro [lang="ro"],
-    body.lang-fr [lang="fr"], body.lang-it [lang="it"] { 
-      display: block !important; 
-    }
+    /* Logik für Umschaltung (Klasse am Body) */
+    body.lang-en [lang="de"] { display: none; }
+    body.lang-en [lang="en"] { display: block; }
+    body.lang-en li[lang="en"] { display: flex !important; }
+    body.lang-en span[lang="en"] { display: inline !important; }
 
-    /* Spezialfall für Flex-Items (Listen-Icons) */
-    body.lang-en li[lang="en"], body.lang-ig li[lang="ig"], body.lang-ru li[lang="ru"],
-    body.lang-hu li[lang="hu"], body.lang-pl li[lang="pl"], body.lang-my li[lang="my"],
-    body.lang-es li[lang="es"], body.lang-cs li[lang="cs"], body.lang-ro li[lang="ro"],
-    body.lang-fr li[lang="fr"], body.lang-it li[lang="it"] { 
-      display: flex !important; 
-    }
+    body.lang-ig [lang="de"] { display: none; }
+    body.lang-ig [lang="ig"] { display: block; }
+    body.lang-ig li[lang="ig"] { display: flex !important; }
+    body.lang-ig span[lang="ig"] { display: inline !important; }
 
-    /* Deutsch als Default (wenn keine Klasse gesetzt ist) */
-    body:not([class*="lang-"]) [lang="de"] { display: block; }
-    body:not([class*="lang-"]) li[lang="de"] { display: flex; }
+    body.lang-ru [lang="de"] { display: none; }
+    body.lang-ru [lang="ru"] { display: block; }
+    body.lang-ru li[lang="ru"] { display: flex !important; }
+    body.lang-ru span[lang="ru"] { display: inline !important; }
+
+    body.lang-hu [lang="de"] { display: none; }
+    body.lang-hu [lang="hu"] { display: block; }
+    body.lang-hu li[lang="hu"] { display: flex !important; }
+    body.lang-hu span[lang="hu"] { display: inline !important; }
+
+    body.lang-pl [lang="de"] { display: none; }
+    body.lang-pl [lang="pl"] { display: block; }
+    body.lang-pl li[lang="pl"] { display: flex !important; }
+    body.lang-pl span[lang="pl"] { display: inline !important; }
+
+    body.lang-my [lang="de"] { display: none; }
+    body.lang-my [lang="my"] { display: block; }
+    body.lang-my li[lang="my"] { display: flex !important; }
+    body.lang-my span[lang="my"] { display: inline !important; }
+
+    body.lang-es [lang="de"] { display: none; }
+    body.lang-es [lang="es"] { display: block; }
+    body.lang-es li[lang="es"] { display: flex !important; }
+    body.lang-es span[lang="es"] { display: inline !important; }
+
+    body.lang-cs [lang="de"] { display: none; }
+    body.lang-cs [lang="cs"] { display: block; }
+    body.lang-cs li[lang="cs"] { display: flex !important; }
+    body.lang-cs span[lang="cs"] { display: inline !important; }
+
+    body.lang-ro [lang="de"] { display: none; }
+    body.lang-ro [lang="ro"] { display: block; }
+    body.lang-ro li[lang="ro"] { display: flex !important; }
+    body.lang-ro span[lang="ro"] { display: inline !important; }
+
+    body.lang-fr [lang="de"] { display: none; }
+    body.lang-fr [lang="fr"] { display: block; }
+    body.lang-fr li[lang="fr"] { display: flex !important; }
+    body.lang-fr span[lang="fr"] { display: inline !important; }
+
+    body.lang-it [lang="de"] { display: none; }
+    body.lang-it [lang="it"] { display: block; }
+    body.lang-it li[lang="it"] { display: flex !important; }
+    body.lang-it span[lang="it"] { display: inline !important; }
 
     header {
       padding: 4.5rem 1.5rem 2rem;
@@ -73,19 +107,19 @@
       right: 1rem;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
+      align-items: flex-start;
     }
 
     .lang-switch { 
       display: flex; 
-      gap: 0.4rem; 
+      gap: 0.3rem; 
       flex-wrap: wrap; 
-      justify-content: flex-end;
+      justify-content: flex-end; 
+      max-width: 80%;
     }
 
     .lang-btn, .install-btn-top {
-      padding: 0.3rem 0.6rem;
+      padding: 0.4rem 0.6rem;
       border: 1px solid #ddd;
       background: white;
       border-radius: 6px;
@@ -93,17 +127,14 @@
       font-size: 0.75rem;
       font-weight: 600;
       transition: 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       color: inherit;
     }
 
     .lang-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
 
     .logo-img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 1rem;
@@ -112,8 +143,8 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     }
 
-    h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); line-height: 1.2; margin-bottom: 0.5rem; }
-    .subtitle { color: var(--accent-soft); font-size: 0.95rem; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--accent-soft); font-size: 1rem; }
 
     main {
       max-width: 1040px;
@@ -190,18 +221,18 @@
         </button>
 
         <div class="lang-switch">
-          <button class="lang-btn active" onclick="setLang('de')">DE</button>
-          <button class="lang-btn" onclick="setLang('en')">EN</button>
-          <button class="lang-btn" onclick="setLang('ru')">RU</button>
-          <button class="lang-btn" onclick="setLang('hu')">HU</button>
-          <button class="lang-btn" onclick="setLang('pl')">PL</button>
-          <button class="lang-btn" onclick="setLang('my')">MY</button>
-          <button class="lang-btn" onclick="setLang('es')">ES</button>
-          <button class="lang-btn" onclick="setLang('cs')">CS</button>
-          <button class="lang-btn" onclick="setLang('ro')">RO</button>
-          <button class="lang-btn" onclick="setLang('fr')">FR</button>
-          <button class="lang-btn" onclick="setLang('it')">IT</button>
-          <button class="lang-btn" onclick="setLang('ig')">IG</button>
+          <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+          <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">RU</button>
+          <button class="lang-btn" id="btn-hu" onclick="setLang('hu')">HU</button>
+          <button class="lang-btn" id="btn-pl" onclick="setLang('pl')">PL</button>
+          <button class="lang-btn" id="btn-my" onclick="setLang('my')">MY</button>
+          <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+          <button class="lang-btn" id="btn-cs" onclick="setLang('cs')">CS</button>
+          <button class="lang-btn" id="btn-ro" onclick="setLang('ro')">RO</button>
+          <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+          <button class="lang-btn" id="btn-it" onclick="setLang('it')">IT</button>
+          <button class="lang-btn" id="btn-ig" onclick="setLang('ig')">IG</button>
         </div>
       </div>
       
@@ -222,15 +253,15 @@
       
       <p class="subtitle" lang="de">Praktische, saubere Unterkunft für Monteure und Teams.</p>
       <p class="subtitle" lang="en">Practical, clean accommodation for fitters and teams.</p>
-      <p class="subtitle" lang="ru">Удобное и чистое жилье для монтажников и бригад.</p>
-      <p class="subtitle" lang="hu">Praktikus, tiszta szállás szerelőknek és csapatoknak.</p>
-      <p class="subtitle" lang="pl">Praktyczne, czyste zakwaterowanie dla monterów i zespołów.</p>
-      <p class="subtitle" lang="my">တပ်ဆင်ရေးသမားများနှင့် အဖွဲ့များအတွက် သန့်ရှင်းအဆင်ပြေသော နေရာထိုင်ခင်း။</p>
-      <p class="subtitle" lang="es">Alojamiento práctico y limpio para técnicos y equipos.</p>
-      <p class="subtitle" lang="cs">Praktické a čisté ubytování pro montéry a týmy.</p>
-      <p class="subtitle" lang="ro">Cazare practică și curată pentru echipe și muncitori.</p>
-      <p class="subtitle" lang="fr">Logement pratique et propre pour monteurs et équipes.</p>
-      <p class="subtitle" lang="it">Alloggio pratico e pulito per trasfertisti e team.</p>
+      <p class="subtitle" lang="ru">Удобное жилье для монтажников и бригад.</p>
+      <p class="subtitle" lang="hu">Praktikus szállás szerelőknek és csapatoknak.</p>
+      <p class="subtitle" lang="pl">Czyste zakwaterowanie dla monterów i zespołów.</p>
+      <p class="subtitle" lang="my">တပ်ဆင်ရေးသမားများနှင့် အဖွဲ့များအတွက် နေရာထိုင်ခင်း။</p>
+      <p class="subtitle" lang="es">Alojamiento práctico para técnicos y equipos.</p>
+      <p class="subtitle" lang="cs">Čisté ubytování pro montéry a týmy.</p>
+      <p class="subtitle" lang="ro">Cazare practică și curată pentru echipe.</p>
+      <p class="subtitle" lang="fr">Logement propre pour monteurs et équipes.</p>
+      <p class="subtitle" lang="it">Alloggio pulito per trasfertisti e team.</p>
       <p class="subtitle" lang="ig">Ebe obibi dị mma ma dị ọcha maka ndị ọrụ na ndị otu.</p>
     </header>
 
@@ -265,13 +296,13 @@
         <div class="price-tag">35 € 
           <span lang="de">/ Nacht pro Person</span>
           <span lang="en">/ night per person</span>
-          <span lang="ru">/ за ночь с человека</span>
+          <span lang="ru">/ ночь / чел</span>
           <span lang="hu">/ éjszaka / fő</span>
           <span lang="pl">/ noc za osobę</span>
-          <span lang="my">/ တစ်ညလျှင် တစ်ဦးလျှင်</span>
+          <span lang="my">/ တစ်ညလျှင်</span>
           <span lang="es">/ noche por persona</span>
           <span lang="cs">/ noc za osobu</span>
-          <span lang="ro">/ noapte de persoană</span>
+          <span lang="ro">/ noapte / persoană</span>
           <span lang="fr">/ nuit par personne</span>
           <span lang="it">/ notte a persona</span>
           <span lang="ig">/ n'abalị maka otu onye</span>
@@ -279,43 +310,43 @@
 
         <p lang="de">Inklusive WLAN, Parkplatz und Endreinigung.</p>
         <p lang="en">Including Wi-Fi, parking and final cleaning.</p>
-        <p lang="ru">Включая Wi-Fi, парковку и финальную уборку.</p>
-        <p lang="hu">Ingyenes WiFi, parkolás és végtakarítás.</p>
-        <p lang="pl">W cenie Wi-Fi, parking i sprzątanie końcowe.</p>
-        <p lang="my">Wi-Fi၊ ကားပါကင်နှင့် အခန်းသန့်ရှင်းရေး အခမဲ့ပါဝင်သည်။</p>
-        <p lang="es">Incluye Wi-Fi, aparcamiento y limpieza final.</p>
-        <p lang="cs">Včetně Wi-Fi, parkování a závěrečného úklidu.</p>
-        <p lang="ro">Include Wi-Fi, parcare și curățenie finală.</p>
-        <p lang="fr">Inclus Wi-Fi, parking et ménage final.</p>
-        <p lang="it">Incluso Wi-Fi, parcheggio e pulizia finale.</p>
+        <p lang="ru">Включая Wi-Fi, парковку и уборку.</p>
+        <p lang="hu">WiFi-vel, parkolással és takarítással.</p>
+        <p lang="pl">W cenie Wi-Fi, parking i sprzątanie.</p>
+        <p lang="my">Wi-Fi၊ ကားပါကင်နှင့် သန့်ရှင်းရေးပါဝင်သည်။</p>
+        <p lang="es">Incluye Wi-Fi, parking y limpieza.</p>
+        <p lang="cs">Včetně Wi-Fi, parkování a úklidu.</p>
+        <p lang="ro">Include Wi-Fi, parcare și curățenie.</p>
+        <p lang="fr">Inclus Wi-Fi, parking et ménage.</p>
+        <p lang="it">Incluso Wi-Fi, parcheggio e pulizia.</p>
         <p lang="ig">Gụnyere Wi-Fi, ebe a na-adọba ụgbọala na nhicha ikpeazụ.</p>
 
         <ul>
-          <li lang="de"><i data-lucide="check-circle-2" class="check-icon"></i> Saubere Einzelbetten</li>
-          <li lang="en"><i data-lucide="check-circle-2" class="check-icon"></i> Clean single beds</li>
-          <li lang="ru"><i data-lucide="check-circle-2" class="check-icon"></i> Чистые односпальные кровати</li>
-          <li lang="hu"><i data-lucide="check-circle-2" class="check-icon"></i> Tiszta egyszemélyes ágyak</li>
-          <li lang="pl"><i data-lucide="check-circle-2" class="check-icon"></i> Czyste pojedyncze łóżka</li>
-          <li lang="my"><i data-lucide="check-circle-2" class="check-icon"></i> သန့်ရှင်းသော တစ်ဦးတည်းအိပ်ကုတင်များ</li>
-          <li lang="es"><i data-lucide="check-circle-2" class="check-icon"></i> Camas individuales limpias</li>
-          <li lang="cs"><i data-lucide="check-circle-2" class="check-icon"></i> Čistá samostatná lůžka</li>
-          <li lang="ro"><i data-lucide="check-circle-2" class="check-icon"></i> Paturi individuale curate</li>
-          <li lang="fr"><i data-lucide="check-circle-2" class="check-icon"></i> Lits simples propres</li>
-          <li lang="it"><i data-lucide="check-circle-2" class="check-icon"></i> Letti singoli puliti</li>
-          <li lang="ig"><i data-lucide="check-circle-2" class="check-icon"></i> Àkwà ndina dị ọcha</li>
-          
-          <li lang="de"><i data-lucide="check-circle-2" class="check-icon"></i> Voll ausgestattete Küche</li>
-          <li lang="en"><i data-lucide="check-circle-2" class="check-icon"></i> Fully equipped kitchen</li>
-          <li lang="ru"><i data-lucide="check-circle-2" class="check-icon"></i> Полностью оборудованная кухня</li>
-          <li lang="hu"><i data-lucide="check-circle-2" class="check-icon"></i> Teljesen felszerelt konyha</li>
-          <li lang="pl"><i data-lucide="check-circle-2" class="check-icon"></i> W pełni wyposażona kuchnia</li>
-          <li lang="my"><i data-lucide="check-circle-2" class="check-icon"></i> အစုံအလင်ပါဝင်သော မီးဖိုချောင်</li>
-          <li lang="es"><i data-lucide="check-circle-2" class="check-icon"></i> Cocina totalmente equipada</li>
-          <li lang="cs"><i data-lucide="check-circle-2" class="check-icon"></i> Plně vybavená kuchyně</li>
-          <li lang="ro"><i data-lucide="check-circle-2" class="check-icon"></i> Bucătărie complet echipată</li>
-          <li lang="fr"><i data-lucide="check-circle-2" class="check-icon"></i> Cuisine entièrement équipée</li>
-          <li lang="it"><i data-lucide="check-circle-2" class="check-icon"></i> Cucina completamente attrezzata</li>
-          <li lang="ig"><i data-lucide="check-circle-2" class="check-icon"></i> Ebe nri nwere ngwa niile</li>
+          <li lang="de"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Saubere Einzelbetten</span></li>
+          <li lang="en"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Clean single beds</span></li>
+          <li lang="ru"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Чистые кровати</span></li>
+          <li lang="hu"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Tiszta ágyak</span></li>
+          <li lang="pl"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Czyste łóżka</span></li>
+          <li lang="my"><i data-lucide="check-circle-2" class="check-icon"></i> <span>သန့်ရှင်းသောကုတင်များ</span></li>
+          <li lang="es"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Camas limpias</span></li>
+          <li lang="cs"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Čistá lůžka</span></li>
+          <li lang="ro"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Paturi curate</span></li>
+          <li lang="fr"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Lits propres</span></li>
+          <li lang="it"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Letti puliti</span></li>
+          <li lang="ig"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Àkwà ndina dị ọcha</span></li>
+
+          <li lang="de"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Voll ausgestattete Küche</span></li>
+          <li lang="en"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Fully equipped kitchen</span></li>
+          <li lang="ru"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Кухня</span></li>
+          <li lang="hu"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Felszerelt konyha</span></li>
+          <li lang="pl"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Wyposażona kuchnia</span></li>
+          <li lang="my"><i data-lucide="check-circle-2" class="check-icon"></i> <span>မီးဖိုချောင်အစုံအလင်</span></li>
+          <li lang="es"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Cocina equipada</span></li>
+          <li lang="cs"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Vybavená kuchyně</span></li>
+          <li lang="ro"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Bucătărie utilată</span></li>
+          <li lang="fr"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Cuisine équipée</span></li>
+          <li lang="it"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Cucina attrezzata</span></li>
+          <li lang="ig"><i data-lucide="check-circle-2" class="check-icon"></i> <span>Ebe nri nwere ngwa niile</span></li>
         </ul>
       </section>
 
@@ -333,7 +364,6 @@
           <div class="section-label" lang="fr">Contact</div>
           <div class="section-label" lang="it">Contatti</div>
           <div class="section-label" lang="ig">Kpọtụrụ anyị</div>
-          
           <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem;">
             <a href="https://wa.me/436801610618" class="btn-primary btn-whatsapp" target="_blank">
               <i data-lucide="message-circle"></i> WhatsApp
@@ -347,31 +377,30 @@
         <section class="card">
           <div class="section-label" lang="de">Lage</div>
           <div class="section-label" lang="en">Location</div>
-          <div class="section-label" lang="ru">Расположение</div>
-          <div class="section-label" lang="hu">Elhelyezkedés</div>
+          <div class="section-label" lang="ru">Адрес</div>
+          <div class="section-label" lang="hu">Helyszín</div>
           <div class="section-label" lang="pl">Lokalizacja</div>
           <div class="section-label" lang="my">တည်နေရာ</div>
           <div class="section-label" lang="es">Ubicación</div>
           <div class="section-label" lang="cs">Poloha</div>
           <div class="section-label" lang="ro">Locație</div>
-          <div class="section-label" lang="fr">Emplacement</div>
+          <div class="section-label" lang="fr">Position</div>
           <div class="section-label" lang="it">Posizione</div>
           <div class="section-label" lang="ig">Ebe anyị dị</div>
-
           <p><strong>Gästehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Austria</p>
           <button onclick="openNavigation()" class="btn-primary btn-nav" style="margin-top:1rem;">
             <i data-lucide="map-pin"></i> 
             <span lang="de">Route anzeigen</span>
             <span lang="en">Get directions</span>
-            <span lang="ru">Проложить маршрут</span>
-            <span lang="hu">Útvonaltervezés</span>
+            <span lang="ru">Маршрут</span>
+            <span lang="hu">Útvonal</span>
             <span lang="pl">Pokaż trasę</span>
-            <span lang="my">လမ်းညွှန်ပြပါ</span>
-            <span lang="es">Cómo llegar</span>
-            <span lang="cs">Zobrazit trasu</span>
-            <span lang="ro">Indicații traseu</span>
+            <span lang="my">လမ်းညွှန်</span>
+            <span lang="es">Ruta</span>
+            <span lang="cs">Trasa</span>
+            <span lang="ro">Ruta</span>
             <span lang="fr">Itinéraire</span>
-            <span lang="it">Ottieni indicazioni</span>
+            <span lang="it">Percorso</span>
             <span lang="ig">Gosi ụzọ</span>
           </button>
         </section>
@@ -408,43 +437,25 @@
     };
 
     function setLang(lang) {
-      // Alle Klassen entfernen
-      const langs = ['en', 'ig', 'ru', 'hu', 'pl', 'my', 'es', 'cs', 'ro', 'fr', 'it'];
-      langs.forEach(l => document.body.classList.remove('lang-' + l));
+      // Alle Sprach-Klassen entfernen
+      const supportedLangs = ['en', 'ig', 'ru', 'hu', 'pl', 'my', 'es', 'cs', 'ro', 'fr', 'it'];
+      supportedLangs.forEach(l => document.body.classList.remove('lang-' + l));
       
-      // Neue Klasse setzen, falls nicht Deutsch
+      // Neue Klasse hinzufügen (außer bei de)
       if(lang !== 'de') {
         document.body.classList.add('lang-' + lang);
       }
       
-      // Aktiven Button markieren
+      // Aktiven Button hervorheben
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
-        if(btn.textContent.toLowerCase() === lang || (lang==='my' && btn.textContent==='MY')) {
-            btn.classList.add('active');
-        }
       });
-      // Spezialfall Button Text Matching Fix
-      const btns = document.querySelectorAll('.lang-btn');
-      btns.forEach(b => {
-          b.classList.toggle('active', b.getAttribute('onclick').includes(`'${lang}'`));
-      });
+      const activeBtn = document.getElementById('btn-' + lang);
+      if(activeBtn) activeBtn.classList.add('active');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Spracherkennung
-      const userLang = navigator.language || navigator.userLanguage; 
-      const code = userLang.split('-')[0];
-      const supported = ['de', 'en', 'ru', 'hu', 'pl', 'my', 'es', 'cs', 'ro', 'fr', 'it', 'ig'];
-      
-      if (supported.includes(code)) {
-          setLang(code);
-      } else {
-          setLang('en');
-      }
-      
       lucide.createIcons();
-
       document.getElementById('logo-placeholder').src = images.logo;
       const container = document.getElementById('gallery-container');
       const lb = document.getElementById('lightbox');
