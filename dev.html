@@ -157,7 +157,6 @@
     .social-links a:hover { opacity: 1; transform: translateY(-2px); }
     .footer-nav { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
     .footer-nav span { cursor: pointer; font-weight: 600; text-decoration: underline; }
-    .footer-heart { margin-top: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 5px; }
 
     .modal { display: none; position: fixed; z-index: 3000; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); backdrop-filter: blur(5px); align-items: center; justify-content: center; }
     .modal-content { background: #fff; width: 90%; max-width: 550px; padding: 2.5rem; border-radius: 24px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); text-align: center; }
@@ -182,7 +181,7 @@
         </div>
       </div>
       
-      <img src="Logo.webp" alt="Gästehaus 22 Logo - Monteurunterkunft Asten" class="logo-img">
+      <img src="Logo.webp" alt="Gästehaus 22 Logo - Monteurunterkunft Asten Karl Achleitner" class="logo-img">
       <h1 lang="de">Monteurzimmer in Asten</h1>
       <h1 lang="en">Worker Rooms in Asten</h1>
       <p class="subtitle" lang="de">Praktisch. Sauber. Günstig.</p>
@@ -226,12 +225,12 @@
         <section class="card">
           <div class="section-label" lang="de">Lage</div>
           <div class="section-label" lang="en">Location</div>
-          <p><strong>Gästehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Austria</p>
-          <button onclick="openNavigation()" class="btn-primary btn-nav" style="margin-top:1rem;">
-            <i data-lucide="map-pin"></i> <span lang="de">Route anzeigen</span><span lang="en">Get directions</span>
+          <p><strong>Gästehaus 22</strong><br>Eichenstraße 22, 4481 Asten</p>
+          <div id="dist-info"></div>
+          <button onclick="openNavigation()" class="btn-primary btn-nav">
+            <i data-lucide="map-pin"></i> <span lang="de">Route berechnen</span><span lang="en">Get directions</span>
           </button>
         </section>
-        
       </aside>
 
       <!-- SEO TEXT BLOCK FÜR GOOGLE RANKING -->
@@ -240,14 +239,14 @@
         <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;" lang="en">Affordable Worker Accommodation in Asten</h2>
         <p style="font-size: 0.9rem; color: var(--accent-soft);" lang="de">
           Suchen Sie eine saubere und preiswerte Unterkunft für Monteure oder Arbeiter im Bezirk Linz-Land? 
-          Das Gästehaus 22 in Asten bietet die perfekte Lösung. Durch die ideale Lage nahe der Autobahn A1 
+          Das Gästehaus 22 von Karl Achleitner in Asten bietet die perfekte Lösung. Durch die ideale Lage nahe der Autobahn A1 
           und kurzen Wegen nach Linz, Enns und St. Florian sind wir ein beliebter Stützpunkt für Firmen. 
           Unsere Zimmer sind modern ausgestattet und bieten dank Starlink Highspeed-Internet sowie 
           YouTube Premium den nötigen Komfort nach dem Feierabend. Parkplätze direkt vorm Haus inklusive.
         </p>
         <p style="font-size: 0.9rem; color: var(--accent-soft);" lang="en">
           Looking for clean and affordable accommodation for workers in the Linz-Land district? 
-          Gästehaus 22 in Asten is the perfect solution. Ideally located near the A1 motorway 
+          Gästehaus 22 by Karl Achleitner in Asten is the perfect solution. Ideally located near the A1 motorway 
           with short distances to Linz, Enns, and St. Florian, we are a preferred choice for companies. 
           Our rooms are modernly equipped and offer comfort after work with Starlink Highspeed-Internet 
           and YouTube Premium. Parking is available directly in front of the house.
@@ -284,7 +283,7 @@
         <p><strong>Informationspflicht gemäß § 5 ECG & § 25 Mediengesetz</strong></p><br>
         <p><strong>Gästehaus 22</strong></p>
         <p>Privatzimmervermietung (Häusliche Nebenbeschäftigung)</p>
-        <p>Inhaber: [Dein Name]</p>
+        <p>Inhaber: Karl Achleitner</p>
         <p>Eichenstraße 22, 4481 Asten, Österreich</p><br>
         <p>Tel: +43 680 1610618</p>
         <p>E-Mail: office@gaestehaus22.at</p><br>
@@ -294,7 +293,7 @@
         <p><strong>Information according to § 5 ECG & § 25 Media Act</strong></p><br>
         <p><strong>Gästehaus 22</strong></p>
         <p>Private Rental</p>
-        <p>Owner: [Your Name]</p>
+        <p>Owner: Karl Achleitner</p>
         <p>Eichenstrasse 22, 4481 Asten, Austria</p><br>
         <p>Email: office@gaestehaus22.at</p>
       </div>
@@ -324,7 +323,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     const images = { gallery: [
-      {src: "bedrooms.webp", alt: "Gemütliche Schlafzimmer im Gästehaus 22 Asten"},
+      {src: "bedrooms.webp", alt: "Gemütliche Schlafzimmer im Gästehaus 22 Asten Karl Achleitner"},
       {src: "livingroom.webp", alt: "Wohnzimmer mit TV und YouTube Premium"},
       {src: "kitchen.webp", alt: "Voll ausgestattete Küche für Monteure"},
       {src: "bathroom.webp", alt: "Sauberes Badezimmer und WC"}
