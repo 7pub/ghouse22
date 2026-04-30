@@ -33,6 +33,7 @@
     body.lang-en [lang="en"] { display: block; }
     body.lang-en h1[lang="en"], body.lang-en p[lang="en"], body.lang-en .section-label[lang="en"] { display: block !important; }
     body.lang-en span[lang="en"] { display: inline !important; }
+    body.lang-en li[lang="en"] { display: flex !important; }
 
     header {
       padding: 5rem 1.5rem 2rem;
@@ -42,7 +43,6 @@
       position: relative;
     }
     
-    /* Top Bar Fix */
     .top-bar {
       position: absolute;
       top: 1rem; left: 0; right: 0;
@@ -69,9 +69,8 @@
 
     .lang-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-    /* PWA Button Styling */
     .install-btn-top { 
-      display: none; /* Wird per JS eingeblendet */
+      display: none; 
       padding: 0.5rem 0.8rem;
       background: white;
       border: 1px solid var(--link);
@@ -107,7 +106,7 @@
     
     ul { list-style: none; margin-top: 1rem; }
     li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.75rem; }
-    .check-icon { color: var(--success); }
+    .check-icon { color: var(--success); flex-shrink: 0; }
 
     .btn-primary {
       padding: 0.8rem; color: #fff; border-radius: 12px;
@@ -128,29 +127,28 @@
 
     footer { text-align: center; padding: 4rem 1.5rem 3rem; color: var(--accent-soft); font-size: 0.9rem; }
     .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
-    .social-links a { color: var(--accent); opacity: 0.6; }
+    .social-links a { color: var(--accent); opacity: 0.6; transition: 0.3s; }
+    .social-links a:hover { opacity: 1; transform: translateY(-2px); }
     .footer-nav { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
     .footer-nav span { cursor: pointer; font-weight: 600; text-decoration: underline; }
 
     /* Modals */
     .modal { display: none; position: fixed; z-index: 3000; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); backdrop-filter: blur(5px); align-items: center; justify-content: center; }
-    .modal-content { background: #fff; width: 90%; max-width: 500px; padding: 2rem; border-radius: 20px; position: relative; }
-    .close-modal { position: absolute; top: 1rem; right: 1rem; cursor: pointer; font-size: 1.5rem; }
+    .modal-content { background: #fff; width: 90%; max-width: 500px; padding: 2.5rem; border-radius: 20px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .close-modal { position: absolute; top: 1rem; right: 1rem; cursor: pointer; font-size: 1.5rem; background: #eee; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
     #lightbox { display: none; position: fixed; z-index: 4000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
-    #lightbox img { max-width: 90%; max-height: 90%; }
+    #lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
   </style>
 </head>
 <body id="top">
 
     <header>
       <div class="top-bar">
-        <!-- PWA Button -->
         <button id="install-button" class="install-btn-top">
           <i data-lucide="download-cloud"></i> <span>App</span>
         </button>
 
-        <!-- Sprachwahl -->
         <div class="lang-switch">
           <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
           <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
@@ -171,7 +169,8 @@
         <div class="price-tag">35 € <span style="font-size: 0.9rem; font-weight: 400;" lang="de">/ Nacht pro Person</span><span style="font-size: 0.9rem; font-weight: 400;" lang="en">/ night per person</span></div>
         <ul>
           <li><i data-lucide="wifi" class="check-icon"></i> <span lang="de">Gratis WLAN</span><span lang="en">Free Wi-Fi</span></li>
-          <li><i data-lucide="utensils" class="check-icon"></i> <span lang="de">Küche & Wohnzimmer</span><span lang="en">Kitchen & Livingroom</span></li>
+          <li><i data-lucide="utensils" class="check-icon"></i> <span lang="de">Voll ausgestattete Küche</span><span lang="en">Fully equipped kitchen</span></li>
+          <li><i data-lucide="tv" class="check-icon"></i> <span lang="de">Wohnzimmer mit TV & Chill-Area</span><span lang="en">Living room with TV & Chill-Area</span></li>
           <li><i data-lucide="car" class="check-icon"></i> <span lang="de">Parkplätze inkl.</span><span lang="en">Parking included</span></li>
         </ul>
       </section>
@@ -179,52 +178,63 @@
       <aside style="display: flex; flex-direction: column; gap: 1.5rem;">
         <section class="card">
           <div class="section-label" lang="de">Kontakt</div>
+          <div class="section-label" lang="en">Contact</div>
           <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem;">
-            <a href="https://wa.me/436801610618" class="btn-primary btn-whatsapp">WhatsApp</a>
-            <a href="sms:+436801610618?body=Anfrage" class="btn-primary btn-rcs"><i data-lucide="message-square"></i> RCS</a>
+            <a href="https://wa.me/436801610618" class="btn-primary btn-whatsapp" target="_blank">WhatsApp</a>
+            <a href="sms:+436801610618?body=Anfrage%20Zimmer" class="btn-primary btn-rcs"><i data-lucide="message-square"></i> RCS Nachricht</a>
             <a href="tel:+436801610618" class="btn-primary btn-call"><span lang="de">Anrufen</span><span lang="en">Call us</span></a>
           </div>
         </section>
 
         <section class="card">
           <div class="section-label" lang="de">Lage</div>
-          <p>Eichenstraße 22, 4481 Asten</p>
+          <div class="section-label" lang="en">Location</div>
+          <p><strong>Gästehaus 22</strong><br>Eichenstraße 22, 4481 Asten</p>
           <div id="dist-info"></div>
-          <button onclick="openNavigation()" class="btn-primary btn-nav"><i data-lucide="map-pin"></i> Route</button>
+          <button onclick="openNavigation()" class="btn-primary btn-nav"><i data-lucide="map-pin"></i> <span lang="de">Route berechnen</span><span lang="en">Get directions</span></button>
         </section>
       </aside>
 
       <section class="gallery-section card" style="grid-column: 1 / -1;">
+        <div class="section-label" lang="de">Galerie</div>
+        <div class="section-label" lang="en">Gallery</div>
         <div class="gallery-grid" id="gallery-container"></div>
       </section>
     </main>
 
   <footer>
     <div class="social-links">
-      <a href="#"><i data-lucide="instagram"></i></a>
-      <a href="#"><i data-lucide="facebook"></i></a>
+      <a href="https://instagram.com/gaestehaus22" target="_blank"><i data-lucide="instagram"></i></a>
+      <a href="https://facebook.com/gaestehaus22" target="_blank"><i data-lucide="facebook"></i></a>
     </div>
     <div class="footer-nav">
-      <span onclick="toggleModal('legal')">Impressum</span>
-      <span onclick="toggleModal('privacy')">Datenschutz</span>
+      <span onclick="toggleModal('legal')" lang="de">Impressum</span>
+      <span onclick="toggleModal('legal')" lang="en">Legal Notice</span>
+      <span onclick="toggleModal('privacy')" lang="de">Datenschutz</span>
+      <span onclick="toggleModal('privacy')" lang="en">Privacy</span>
     </div>
-    <p>© 2026 Gästehaus 22</p>
+    <p>© 2026 Gästehaus 22 – Asten</p>
   </footer>
 
   <!-- Modals -->
   <div id="modal-legal" class="modal" onclick="closeModals(event)">
     <div class="modal-content">
       <span class="close-modal" onclick="toggleModal('legal')">×</span>
-      <h2>Impressum</h2>
-      <p>Gästehaus 22<br>Eichenstraße 22, 4481 Asten</p>
+      <h2 lang="de">Impressum</h2><h2 lang="en">Legal Notice</h2>
+      <div style="text-align: left; margin-top: 1rem;">
+        <p><strong>Gästehaus 22</strong></p>
+        <p>Eichenstraße 22, 4481 Asten, Österreich</p>
+        <p>Tel: +43 680 1610618</p>
+      </div>
     </div>
   </div>
 
   <div id="modal-privacy" class="modal" onclick="closeModals(event)">
     <div class="modal-content">
       <span class="close-modal" onclick="toggleModal('privacy')">×</span>
-      <h2>Datenschutz</h2>
-      <p>Ihre Daten werden nur zur Buchungsabwicklung verwendet.</p>
+      <h2 lang="de">Datenschutz</h2><h2 lang="en">Privacy Policy</h2>
+      <p style="text-align: left; margin-top: 1rem;" lang="de">Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.</p>
+      <p style="text-align: left; margin-top: 1rem;" lang="en">Your data will only be used to process your inquiry.</p>
     </div>
   </div>
 
@@ -233,29 +243,36 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     const images = { gallery: ["bedrooms.webp", "livingroom.webp", "kitchen.webp", "bathroom.webp"] };
+    const DEST_LAT = 48.2163, DEST_LNG = 14.4144;
+    let userCoords = null;
     
-    // SPRACHWAHL
     function setLang(lang) {
       document.body.classList.toggle('lang-en', lang === 'en');
       document.getElementById('btn-de').classList.toggle('active', lang === 'de');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     }
 
-    // MODALS
     function toggleModal(id) {
       const m = document.getElementById('modal-' + id);
-      m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
+      const isShowing = m.style.display === 'flex';
+      m.style.display = isShowing ? 'none' : 'flex';
+      document.body.style.overflow = isShowing ? 'auto' : 'hidden';
     }
-    function closeModals(e) { if(e.target.className === 'modal') e.target.style.display = 'none'; }
 
-    // PWA LOGIK
+    function closeModals(e) { 
+      if(e.target.classList.contains('modal')) {
+        e.target.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    }
+
     let deferredPrompt;
     const installBtn = document.getElementById('install-button');
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      installBtn.style.display = 'flex'; // Erst anzeigen, wenn Installation möglich
+      installBtn.style.display = 'flex';
     });
 
     installBtn.addEventListener('click', async () => {
@@ -269,29 +286,40 @@
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       
-      // Galerie füllen
       const container = document.getElementById('gallery-container');
       images.gallery.forEach(src => {
         const div = document.createElement('div');
         div.className = 'gallery-item';
-        div.innerHTML = `<img src="${src}" alt="Zimmer">`;
+        div.innerHTML = `<img src="${src}" alt="Zimmer" loading="lazy">`;
         div.onclick = () => { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; };
         container.appendChild(div);
       });
 
-      // Geo-Distanz (Beispiel Koordinaten Asten)
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
-          const dist = 5.2; // Hier wäre deine Formel von vorher
+          userCoords = pos.coords;
+          const R = 6371; 
+          const dLat = (DEST_LAT - userCoords.latitude) * Math.PI / 180;
+          const dLon = (DEST_LNG - userCoords.longitude) * Math.PI / 180;
+          const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                    Math.cos(userCoords.latitude * Math.PI / 180) * Math.cos(DEST_LAT * Math.PI / 180) * 
+                    Math.sin(dLon/2) * Math.sin(dLon/2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          const dist = R * c;
+
           const el = document.getElementById('dist-info');
           el.style.display = 'block';
-          el.innerText = `Nur ${dist} km entfernt`;
-        });
+          el.innerText = `Nur ${dist.toFixed(1)} km entfernt`;
+        }, null, {timeout: 5000});
       }
     });
 
     function openNavigation() {
-      window.open("https://www.google.com/maps/dir/?api=1&destination=Gästehaus+22+Asten", '_blank');
+      const addr = encodeURIComponent("Gästehaus 22, Eichenstraße 22, 4481 Asten");
+      const url = /iPad|iPhone|iPod/.test(navigator.userAgent) 
+        ? `maps://maps.apple.com/?daddr=${addr}`
+        : `https://www.google.com/maps/dir/?api=1&destination=${addr}`;
+      window.open(url, '_blank');
     }
   </script>
 </body>
