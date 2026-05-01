@@ -101,3 +101,81 @@
         const url = /iPad|iPhone|iPod/.test(navigator.userAgent) ? `maps://maps.apple.com/?daddr=${addr}` : `https://www.google.com/maps/dir/?api=1&destination=${addr}`;
         window.open(url, '_blank');
     }
+      // Beispiel-Zielkoordinaten (Eiffelturm, Paris)
+    const TARGET_COORDS = {
+        lat: 48.8584,
+        lon: 2.2945
+    };
+
+    const btn = document.getElementById('distBtn');
+    const resultDiv = document.getElementById('result');
+
+    /**
+     * Berechnet die Luftlinie zwischen zwei Punkten (Haversine-Formel)
+     */
+    function calculateHaversine(lat1, lon1, lat2, lon2) {
+        const R = 6371; // Erdradius in Kilometern
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        
+        const a = 
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c; 
+    }
+
+    function updateUI(message, isError = false) {
+        resultDiv.innerHTML = isError ? `<span class="error">${message}</span>` : message;
+    }
+
+    btn.addEventListener('click', () => {
+        if (!navigator.geolocation) {
+            updateUI("Geolocation wird von deinem Browser nicht unterstützt.", true);
+            return;
+        }
+
+        btn.disabled = true;
+        updateUI("Standort wird ermittelt...");
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLat = position.coords.latitude;
+                const userLon = position.coords.longitude;
+
+                const distance = calculateHaversine(
+                    userLat, 
+                    userLon, 
+                    TARGET_COORDS.lat, 
+                    TARGET_COORDS.lon
+                );
+
+                updateUI(`Es sind ca. <strong>${distance.toFixed(2)} km</strong> (Luftlinie) bis zum Ziel.`);
+                btn.disabled = false;
+            },
+            (error) => {
+                btn.disabled = false;
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        updateUI("Zugriff auf Standort verweigert.", true);
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        updateUI("Standortinformationen sind nicht verfügbar.", true);
+                        break;
+                    case error.TIMEOUT:
+                        updateUI("Zeitüberschreitung bei der Standortabfrage.", true);
+                        break;
+                    default:
+                        updateUI("Ein unbekannter Fehler ist aufgetreten.", true);
+                        break;
+                }
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            }
+        );
+    });
