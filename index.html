@@ -10,6 +10,7 @@
     <meta name="description" content="Preiswerte Unterkunft in 4481 Asten nahe Linz. Einzelbetten, Highspeed-WLAN & Parkplätze direkt vorm Haus. Jetzt anfragen: +43 680 1610618.">
     <link rel="canonical" href="https://gaestehaus22.at/">
     <link rel="preconnect" href="https://unpkg.com">
+    
     <!-- Strukturierte Daten (Local Business) -->
     <script type="application/ld+json">
     {
@@ -36,7 +37,6 @@
     }
     </script>
 
-    <!-- Page Setup -->
     <link rel="stylesheet" href="styles.css">
 
     <!-- Favicons & Mobile App Setup -->
@@ -44,11 +44,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
-    
-    <!-- Windows & Theme Setup -->
-    <meta name="msapplication-config" content="/browserconfig.xml">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#222222">
 </head>
 
@@ -56,7 +51,7 @@
 
     <header>
         <div class="top-bar">
-            <button id="install-button" class="install-btn-top">
+            <button id="install-button" class="install-btn-top" style="display: none;">
                 <i data-lucide="download-cloud"></i> <span>App</span>
             </button>
 
@@ -65,28 +60,22 @@
                 <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
             </div>
         </div>
-<img src="Logo.webp" 
-     alt="Gästehaus 22 Logo - Monteurunterkunft Asten" 
-     class="logo-img" 
-     fetchpriority="high" 
-     width="120" 
-     height="120">    
-    <!-- Deutsch: Primär für Google -->
-    <h1 lang="de">Günstige Monteurzimmer & Arbeiterunterkunft in Asten</h1>
-    
-    <!-- Englisch: Für Google als "nicht relevant für den Index" markiert -->
-    <h1 lang="en" aria-hidden="true" style="display: none;">Affordable Worker Rooms in Asten near Linz</h1>
-    
-    <p class="subtitle" lang="de">Ihre preiswerte Unterkunft nahe Linz – Sauber, Sicher, Zentral.</p>
-    <p class="subtitle" lang="en" aria-hidden="true" style="display: none;">Your budget accommodation near Linz.</p>
+        
+        <img src="Logo.webp" alt="Gästehaus 22 Logo" class="logo-img" fetchpriority="high" width="120" height="120">    
+        
+        <h1 lang="de">Günstige Monteurzimmer & Arbeiterunterkunft in Asten</h1>
+        <h1 lang="en" aria-hidden="true" style="display: none;">Affordable Worker Rooms in Asten near Linz</h1>
+        
+        <p class="subtitle" lang="de">Ihre preiswerte Unterkunft nahe Linz – Sauber, Sicher, Zentral.</p>
+        <p class="subtitle" lang="en" aria-hidden="true" style="display: none;">Your budget accommodation near Linz.</p>
     </header>
 
     <main>
+        <!-- Angebot Card -->
         <section class="card">
             <div class="section-label" lang="de">Angebot</div>
             <div class="section-label" lang="en" data-nosnippet>Offer</div>
-            <div class="price-tag">35 € <span style="font-size: 0.9rem; font-weight: 400;" lang="de">/ Nacht pro Person</span><span style="font-size: 0.9rem; font-weight: 400;" lang="en" data-nosnippet>/ night per person</span>
-            </div>
+            <div class="price-tag">35 € <span style="font-size: 0.9rem; font-weight: 400;" lang="de">/ Nacht pro Person</span><span style="font-size: 0.9rem; font-weight: 400;" lang="en" data-nosnippet>/ night per person</span></div>
             <ul>
                 <li><i data-lucide="wifi" class="check-icon"></i> <span lang="de">Starlink - Highspeed-Internet</span><span lang="en" data-nosnippet>Starlink - High-Speed Internet</span></li>
                 <li><i data-lucide="utensils" class="check-icon"></i> <span lang="de">Voll ausgestattete Küche</span><span lang="en" data-nosnippet>Fully equipped kitchen</span></li>
@@ -96,11 +85,13 @@
         </section>
 
         <aside style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Kontakt Card -->
             <section class="card">
                 <div class="section-label" lang="de">Kontakt</div>
                 <div class="section-label" lang="en" data-nosnippet>Contact</div>
                 <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem;">
-                    <a href="https://wa.me/436801610618" id="whatsapp-link" class="btn-primary btn-whatsapp" target="_blank"></a>
+                    <!-- WhatsApp Link korrigiert -->
+                    <a href="https://wa.me/436801610618" id="whatsapp-link" class="btn-primary btn-whatsapp" target="_blank">
                         <i data-lucide="message-circle"></i> WhatsApp
                     </a>
                     <a href="sms:+436801610618?body=Anfrage%20Zimmer" class="btn-primary btn-rcs">
@@ -112,45 +103,44 @@
                 </div>
             </section>
 
+            <!-- Lage Card mit interaktiver Entfernung -->
             <section class="card">
                 <div class="section-label" lang="de">Lage</div>
                 <div class="section-label" lang="en" data-nosnippet>Location</div>
                 <p><strong>Gästehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Austria</p>
+                
+                <div id="location-wrapper" style="margin-top: 1rem;">
+                    <button id="check-dist-btn" class="btn-primary" style="background: none; border: 2px solid var(--link); color: var(--link); font-size: 0.85rem; width: 100%;">
+                        <i data-lucide="map"></i> 
+                        <span lang="de">Wie weit ist es von mir?</span>
+                        <span lang="en">How far is it from me?</span>
+                    </button>
+                    <div id="dist-info" style="display:none; margin-top: 10px; text-align: center; padding: 10px; border-radius: 8px;"></div>
+                </div>
+
                 <button onclick="openNavigation()" class="btn-primary btn-nav" style="margin-top:1rem;">
-                    <i data-lucide="map-pin"></i> <span lang="de">Route anzeigen</span><span lang="en" data-nosnippet>Get directions</span>
+                    <i data-lucide="map-pin"></i> 
+                    <span lang="de">Route anzeigen</span>
+                    <span lang="en" data-nosnippet>Get directions</span>
                 </button>
             </section>
         </aside>
 
+        <!-- Info Text -->
         <section class="card" style="grid-column: 1 / -1;">
-            <!--<h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;" lang="de">Günstige Monteurzimmer & Arbeiterunterkunft in Asten</h2>
-            <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;" lang="en" data-nosnippet>Affordable Worker Accommodation in Asten</h2>
-            <p style="font-size: 0.9rem; color: var(--accent-soft);" lang="de">
-                Suchen Sie eine saubere und preiswerte Unterkunft für Monteure oder Arbeiter im Bezirk Linz-Land?
-                Das Gästehaus 22 in Asten bietet die perfekte Lösung. Durch die ideale Lage nahe der Autobahn A1
-                und kurzen Wegen nach Linz, Enns und St. Florian sind wir ein beliebter Stützpunkt für Firmen.
-            </p>
-            <p style="font-size: 0.9rem; color: var(--accent-soft);" lang="en" data-nosnippet>
-                Looking for clean and affordable accommodation for workers in the Linz-Land district?
-                Gästehaus 22 in Asten is the perfect solution. Ideally located near the A1 motorway
-                with short distances to Linz, Enns, and St. Florian, we are a preferred choice for companies.
-            </p>-->
             <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;" lang="de">Übernachten im Bezirk Linz-Land</h2>
-          <div lang="de" style="font-size: 0.9rem; color: var(--accent-soft);">
-              <p>Das <strong>Gästehaus 22</strong> ist spezialisiert auf die Bedürfnisse von Firmen und deren Mitarbeitern. 
-              Durch die Nähe zur Autobahn A1 (Abfahrt Asten/St. Florian) erreichen Sie die Industriegebiete in 
-              <strong>Linz, Enns, Steyr und St. Valentin</strong> in wenigen Minuten.</p>
-              <p style="margin-top: 10px;">Unsere Unterkunft bietet alles, was Monteure für einen langfristigen oder kurzen Aufenthalt benötigen: 
-              Stabile Einzelbetten, eine voll ausgestattete Gemeinschaftsküche und schnelles WLAN für den Feierabend.</p>
-          </div>
-          
-          <!-- Englisch für User (Google ignoriert das durch aria-hidden) -->
-          <div lang="en" aria-hidden="true" style="display: none;">
-              <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Accommodation for workers in Upper Austria</h2>
-              <p>Perfectly located for projects in Linz and Enns. High-speed internet and parking included.</p>
-          </div>
+            <div lang="de" style="font-size: 0.9rem; color: var(--accent-soft);">
+                <p>Das <strong>Gästehaus 22</strong> ist spezialisiert auf die Bedürfnisse von Firmen und deren Mitarbeitern. 
+                Durch die Nähe zur Autobahn A1 erreichen Sie Industriegebiete in <strong>Linz, Enns, Steyr und St. Valentin</strong> schnell.</p>
+            </div>
+            
+            <div lang="en" aria-hidden="true" style="display: none;">
+                <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Accommodation for workers in Upper Austria</h2>
+                <p>Perfectly located for projects in Linz and Enns. High-speed internet and parking included.</p>
+            </div>
         </section>
 
+        <!-- Galerie -->
         <section class="gallery-section card" style="grid-column: 1 / -1;">
             <div class="section-label" lang="de">Galerie</div>
             <div class="section-label" lang="en" data-nosnippet>Gallery</div>
@@ -170,32 +160,17 @@
             <span onclick="toggleModal('privacy')" lang="en" data-nosnippet>Privacy</span>
         </div>
         <p>© 2026 Gästehaus 22 – 4481 Asten</p>
-        <p class="footer-heart">Build with
-            <img class="emoji" alt="heart" height="18" width="18" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
-            by Karl
-        </p>
     </footer>
 
+    <!-- Modals & Lightbox -->
     <div id="modal-legal" class="modal" onclick="closeModals(event)">
         <div class="modal-content">
             <span class="close-modal" onclick="toggleModal('legal')">×</span>
             <h2 lang="de">Impressum</h2>
-            <h2 lang="en" data-nosnippet>Legal Notice</h2>
-            <div class="modal-body-text" lang="de">
-                <p><strong>Informationspflicht gemäß § 5 ECG & § 25 Mediengesetz</strong></p><br>
+            <div class="modal-body-text">
                 <p><strong>Gästehaus 22</strong></p>
-                <p>Privatzimmervermietung (Häusliche Nebenbeschäftigung)</p>
                 <p>Inhaber: <span id="data-as-772" style="unicode-bidi: bidi-override; direction: rtl;"></span></p>
-                <p>Eichenstraße 22, 4481 Asten, Österreich</p><br>
-                <p>Tel: +43 680 1610618</p>
-                <p>E-Mail: office@gaestehaus22.at</p>
-            </div>
-            <div class="modal-body-text" lang="en" data-nosnippet>
-                <p><strong>Information according to § 5 ECG & § 25 Media Act</strong></p><br>
-                <p><strong>Gästehaus 22</strong></p>
-                <p>Owner: <span id="data-as-772-en" style="unicode-bidi: bidi-override; direction: rtl;"></span></p>
-                <p>Eichenstrasse 22, 4481 Asten, Austria</p><br>
-                <p>Phone: +43 680 1610618</p>
+                <p>Eichenstraße 22, 4481 Asten</p>
             </div>
         </div>
     </div>
@@ -204,19 +179,14 @@
         <div class="modal-content">
             <span class="close-modal" onclick="toggleModal('privacy')">×</span>
             <h2 lang="de">Datenschutz</h2>
-            <h2 lang="en" data-nosnippet>Privacy Policy</h2>
-            <div class="modal-body-text" lang="de">
-                <p>Wir nutzen keine Tracking-Cookies. Standortdaten dienen nur der Routenberechnung.</p>
-            </div>
-            <div class="modal-body-text" lang="en" data-nosnippet>
-                <p>We do not use tracking cookies. Location data is only used for route calculation.</p>
-            </div>
+            <p>Wir nutzen keine Tracking-Cookies. Standortdaten werden nur auf Klick zur Routenberechnung genutzt.</p>
         </div>
     </div>
 
     <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img"></div>
 
-    <script src="/lucide.min.js"></script>
-    <script src="/app.js"></script>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="app.js"></script>
 </body>
 </html>
