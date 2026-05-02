@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Verhindert das Crawlen von sensiblen Systemdateien (falls vorhanden)
+Disallow: /README.md
+Disallow: /LICENSE
+Disallow: /CNAME
+
+# Pfad zur Sitemap (falls du eine sitemap.xml hast)
+Sitemap: https://gaestehaus22.at/sitemap.xml
