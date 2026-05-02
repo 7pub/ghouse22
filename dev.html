@@ -482,25 +482,40 @@
                 <div class="section-label" lang="de">Lage</div>
                 <div class="section-label" lang="en" data-nosnippet>Location</div>
                 <p><strong>Gästehaus 22</strong><br>Eichenstraße 22<br>4481 Asten, Austria</p>
+                
+                <div id="location-wrapper" style="margin-top: 1rem;">
+                    <button id="check-dist-btn" class="btn-primary" style="background: none; border: 2px solid var(--link); color: var(--link); font-size: 0.85rem; width: 100%;">
+                        <i data-lucide="map"></i> 
+                        <span lang="de">Wie weit ist es von mir?</span>
+                        <span lang="en">How far is it from me?</span>
+                    </button>
+                    <div id="dist-info" style="display:none; margin-top: 10px; text-align: center; padding: 10px; border-radius: 8px;"></div>
+                    <div id="result"></div>
+                </div>
+
                 <button onclick="openNavigation()" class="btn-primary btn-nav" style="margin-top:1rem;">
-                    <i data-lucide="map-pin"></i> <span lang="de">Route anzeigen</span><span lang="en" data-nosnippet>Get directions</span>
+                    <i data-lucide="map-pin"></i> 
+                    <span lang="de">Route anzeigen</span>
+                    <span lang="en" data-nosnippet>Get directions</span>
                 </button>
             </section>
         </aside>
 
+        <!-- Info Text -->
         <section class="card" style="grid-column: 1 / -1;">
-            <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;" lang="de">Günstige Monteurzimmer & Arbeiterunterkunft in Asten</h2>
-            <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;" lang="en" data-nosnippet>Affordable Worker Accommodation in Asten</h2>
-            <p style="font-size: 0.9rem; color: var(--accent-soft);" lang="de">
-                Suchen Sie eine saubere und preiswerte Unterkunft für Monteure oder Arbeiter im Bezirk Linz-Land?
-                Das Gästehaus 22 in Asten bietet die perfekte Lösung. Durch die ideale Lage nahe der Autobahn A1
-                und kurzen Wegen nach Linz, Enns und St. Florian sind wir ein beliebter Stützpunkt für Firmen.
-            </p>
-            <p style="font-size: 0.9rem; color: var(--accent-soft);" lang="en" data-nosnippet>
-                Looking for clean and affordable accommodation for workers in the Linz-Land district?
-                Gästehaus 22 in Asten is the perfect solution. Ideally located near the A1 motorway
-                with short distances to Linz, Enns, and St. Florian, we are a preferred choice for companies.
-            </p>
+            <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;" lang="de">Übernachten im Bezirk Linz-Land</h2>
+            <div lang="de" style="font-size: 0.9rem; color: var(--accent-soft);">
+              <p>Das <strong>Gästehaus 22</strong> ist spezialisiert auf die Bedürfnisse von Firmen und deren Mitarbeitern. 
+              Durch die Nähe zur Autobahn A1 (Abfahrt Asten/St. Florian) erreichen Sie die Industriegebiete in 
+              <strong>Linz, Enns, Steyr und St. Valentin</strong> in wenigen Minuten.</p>
+              <p style="margin-top: 10px;">Unsere Unterkunft bietet alles, was Monteure für einen langfristigen oder kurzen Aufenthalt benötigen: 
+              Stabile Einzelbetten, eine voll ausgestattete Gemeinschaftsküche und schnelles WLAN für den Feierabend.</p>
+            </div>
+            
+            <div lang="en" aria-hidden="true" style="display: none;">
+                <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Accommodation for workers in Upper Austria</h2>
+                <p>Perfectly located for projects in Linz and Enns. High-speed internet and parking included.</p>
+            </div>
         </section>
 
         <section class="gallery-section card" style="grid-column: 1 / -1;">
@@ -655,6 +670,62 @@
                 deferredPrompt = null;
             }
         });
+            // PRÄZISE KOORDINATEN: Eichenstraße 22, 4481 Asten
+    const TARGET = { lat: 48.21245, lon: 14.41432 };
+
+    // Elemente aus dem HTML holen
+    const checkDistBtn = document.getElementById('check-dist-btn');
+    const distInfo = document.getElementById('dist-info');
+
+    // Lucide Icons initialisieren
+    lucide.createIcons();
+
+    function calculateHaversine(lat1, lon1, lat2, lon2) {
+        const R = 6371; // Erdradius in km
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) * 
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    checkDistBtn.addEventListener('click', () => {
+        checkDistBtn.disabled = true;
+        distInfo.style.display = 'block';
+        distInfo.innerHTML = "Standort wird ermittelt...";
+
+        if (!navigator.geolocation) {
+            distInfo.innerHTML = "Geolocation wird von deinem Browser nicht unterstützt.";
+            checkDistBtn.disabled = false;
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const userLat = pos.coords.latitude;
+                const userLon = pos.coords.longitude;
+                const distance = calculateHaversine(userLat, userLon, TARGET.lat, TARGET.lon);
+                
+                distInfo.innerHTML = `
+                    <div style="font-weight: bold; color: var(--link); font-size: 1.1rem;">
+                        ${distance.toFixed(1)} km entfernt
+                    </div>
+                    <div style="font-size: 0.8rem; margin-top: 5px;">
+                        (Luftlinie von deinem Standort)
+                    </div>
+                `;
+                checkDistBtn.disabled = false;
+            },
+            (error) => {
+                let msg = "Standortzugriff verweigert.";
+                if(error.code === 3) msg = "Zeitüberschreitung. Bitte erneut versuchen.";
+                distInfo.innerHTML = msg;
+                checkDistBtn.disabled = false;
+            },
+            { timeout: 8000, enableHighAccuracy: true }
+        );
+    });
     </script>
 </body>
 </html>
