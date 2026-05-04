@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gästehaus 22 Asten | Monteurzimmer & Arbeiterunterkunft Linz</title>
 
-    <!-- SEO & Meta -->
     <meta name="description"
         content="+43 680 1610618 - Preiswerte Unterkunft in 4481 Asten nahe Linz. Einzelbetten, Highspeed-WLAN & Parkplätze direkt vorm Haus." />
 
-    <!-- Windows & Theme Setup -->
     <meta name="msapplication-config" content="/browserconfig.xml" />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
@@ -20,13 +18,11 @@
     <link rel="preload" href="Logo.webp" as="image" />
     <link rel="service-doc" href="https://www.gaestehaus22.at/">
 
-    <!-- Favicons & Mobile App Setup -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Strukturierte Daten (Local Business) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -136,7 +132,6 @@
             font-weight: bold;
             cursor: pointer;
             z-index: 4001;
-            /* Liegt über dem Bild */
             transition: 0.3s;
             line-height: 1;
         }
@@ -146,7 +141,6 @@
             transform: scale(1.1);
         }
 
-        /* Optimierung für Mobilgeräte */
         @media (max-width: 600px) {
             .close-lightbox {
                 top: 10px;
@@ -350,10 +344,8 @@
         .gallery-item img {
             width: 100%;
             height: 200px;
-            /* Deine feste Höhe ist okay für das Design */
             object-fit: cover;
             display: block;
-            /* Verhindert kleine Abstände unter Bildern */
             border-radius: 12px;
             cursor: zoom-in;
         }
@@ -584,9 +576,7 @@
             </section>
         </aside>
 
-        <!-- Info Text -->
 <section class="card" style="grid-column: 1 / -1">
-    <!-- DEUTSCHER TEIL -->
     <div id="info-de" lang="de">
         <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem">
             Übernachten im Bezirk Linz-Land
@@ -609,7 +599,6 @@
         </div>
     </div>
 
-    <!-- ENGLISCHER TEIL (Vollständig & Barrierefrei) -->
     <div id="info-en" lang="en" aria-hidden="true" style="display: none">
         <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem">
             Accommodation in the Linz-Land District
@@ -638,10 +627,6 @@
     </main>
 
     <footer>
-        <!--<div class="social-links">
-            <a href="https://instagram.com/gaestehaus22" target="_blank"><i data-lucide="instagram"></i></a>
-            <a href="https://facebook.com/gaestehaus22" target="_blank"><i data-lucide="facebook"></i></a>
-        </div>-->
         <div class="footer-nav">
             <span onclick="toggleModal('legal')" lang="de">Impressum</span>
             <span onclick="toggleModal('legal')" lang="en" data-nosnippet>Legal Notice</span>
@@ -714,7 +699,6 @@
         </div>
     </div>
 
-    <!-- Das Overlay für die Bilder-Galerie -->
     <div id="lightbox" onclick="this.style.display = 'none'">
         <span class="close-lightbox">&times;</span>
         <img id="lightbox-img" onclick="event.stopPropagation()" />
@@ -722,7 +706,6 @@
 
     <script src="https://unpkg.com/lucide@latest" defer></script>
     <script>
-        // 1. Die Bilddaten mit den neuen Dateinamen
         const images = {
             gallery: [
                 {
@@ -744,7 +727,6 @@
             ],
         };
 
-        // Hilfsfunktionen für Sprache und Modals
         function setLang(lang) {
             document.body.classList.toggle("lang-en", lang === "en");
             document
@@ -765,20 +747,14 @@
                 e.target.style.display = "none";
         }
 
-        //Ausführung wenn die Seite geladen ist
-        /**document.addEventListener('DOMContentLoaded', () => {
-          lucide.createIcons();
-          const container = document.getElementById('gallery-container');*/
         document.addEventListener("DOMContentLoaded", () => {
-            // Icons erst initialisieren, wenn der Browser Leerlauf hat
             if ("requestIdleCallback" in window) {
                 requestIdleCallback(() => lucide.createIcons());
             } else {
-                setTimeout(lucide.createIcons, 100); // Fallback für ältere Browser
+                setTimeout(lucide.createIcons, 100);
             }
 
             const container = document.getElementById("gallery-container");
-            // Galerie-Bilder generieren (jetzt mit Thumbnails für Google Insight)
             images.gallery.forEach((img) => {
                 const div = document.createElement("div");
                 div.className = "gallery-item";
@@ -790,13 +766,12 @@
                 imageElement.width = 400;
                 imageElement.height = 300;
 
-                // Klick-Event direkt an das Bild oder das Div binden
                 div.addEventListener("click", (e) => {
-                    e.stopPropagation(); // Verhindert Bubbling
+                    e.stopPropagation();
                     const lightbox = document.getElementById("lightbox");
                     const lightboxImg = document.getElementById("lightbox-img");
 
-                    lightboxImg.src = img.src; // Hier das große Bild laden
+                    lightboxImg.src = img.src;
                     lightbox.style.display = "flex";
                 });
 
@@ -804,14 +779,12 @@
                 container.appendChild(div);
             });
 
-            // Impressum-Namen rückwärts einfügen (Spam-Schutz)
             ["data-as-772", "data-as-772-en"].forEach((id) => {
                 const el = document.getElementById(id);
                 if (el) el.innerText = "rentiehclA lraK";
             });
         });
 
-        // Navigation & Service Worker
         function openNavigation() {
             const addr = encodeURIComponent(
                 "Gästehaus 22, Eichenstraße 22, 4481 Asten",
@@ -828,7 +801,6 @@
             });
         }
 
-        // PWA Install Logik
         let deferredPrompt;
         const installBtn = document.getElementById("install-button");
         window.addEventListener("beforeinstallprompt", (e) => {
@@ -846,8 +818,7 @@
             }
         });
 
-        // Entfernungsmessung
-        const TARGET = { lat: 48.223023, lon: 14.4182762 }; //lat: 48.21245, lon: 14.41432
+        const TARGET = { lat: 48.223023, lon: 14.4182762 };
         const checkDistBtn = document.getElementById("check-dist-btn");
         const distInfo = document.getElementById("dist-info");
 
